@@ -728,7 +728,7 @@ display: none;
       });
 
   }
-
+/*
   let waitForLazyElem = function(options) {
       try {
           const initialElemCheck = document.querySelector(options.elem);
@@ -758,7 +758,8 @@ display: none;
           console.log(`waitForLazyElemv2 errored: ${options.elemContainer}. Error:\n${e}`, 'policelight');
       }
   }
-
+*/
+/*
   let updateBlocks = function() {
       console.log('updateBlocks()');
       let blocks = document.querySelectorAll('ul.block-group-list > li > p');
@@ -787,8 +788,8 @@ display: none;
       }
 
   }
-
-  let mainLib = function() {
+*/
+  /*let mainLib = function() {
   GM_addStyle(`
     .sk-library {
       height: 100vh !important;
@@ -913,7 +914,7 @@ display: none;
       }, 1000);
 
 
-  }
+  }*/
 
   let checkMaio = function() {
       if (document.querySelector('#maioFooter')) {
@@ -976,7 +977,7 @@ display: none;
   }
 
   if (pageType === 'miloLib') {
-      mainLib();
+      //mainLib();
   } else {
       watchHelixSidekick();
 
