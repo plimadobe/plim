@@ -1,4 +1,5 @@
 (function() {
+  const appInfo = 'Milo All in One ver 0.12';
 
   'use strict';
   /*
@@ -108,11 +109,9 @@ display: none;
 
 */
   // Your code here...
-  console.log(GM_info.script.name + ' ver ' + GM_info.script.version);
-  //console.log('version: ' + GM_info.script.version);
   //throw 'throw';
 
-  //console.log(GM_info);
+  console.log(appInfo);
   console.log('document.URL: ' + document.URL);
   //let currentUrl = window.location.href;
   let currentUrl = document.URL;
