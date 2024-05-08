@@ -472,6 +472,25 @@
 
   }
 
+  let addOpenLangstore = function() {
+    if (!window.location.href.includes('/langstore/')) {
+      console.log('addOpenLangstore()');
+      addButton('Open langstore', 'maioOpenLangstore');
+      document.querySelector('#maioOpenLangstore').addEventListener('click', function() {
+        let countryFolerLangstoreMap = {'uk':'en-gb', 'au':'en-gb', 'africa':'en-gb', 'be_en':'en-gb', 'cy_en':'en-gb', 'gr_en':'en-gb', 'hk_en':'en-gb', 'i.e.':'en-gb', 'in':'en-gb', 'lu_en':'en-gb', 'mt':'en-gb', 'nz':'en-gb', 'sg':'en-gb', 'my_en':'en-gb', 'kw_en':'en-gb', 'qa_en':'en-gb', 'eg_en':'en-gb', 'ng':'en-gb', 'za':'en-gb', 'ca_fr':'fr-ca', 'ar':'es-419', 'la':'es-419', 'mx':'es-419', 'pe':'es-419', 'cl':'es-419', 'co':'es-419', 'cr':'es-419', 'ec':'es-419', 'gt':'es-419', 'pr':'es-419', 'cn':'zh-hans', 'hk_zh':'zh-hant', 'tw':'zh-hant'}
+        let pageInfo = window.aldadp.pageInfo;
+        let countryFolder = pageInfo.location.pathname.split('/')[1];//kr, my_en, hk_en
+        let country = countryFolder.split('_')[0];//kr, my_en, hk_en
+        let currentUrl = window.location.href;
+        let language = pageInfo.language.split('-')[0];//en, zh, ko
+        if (countryFolerLangstoreMap[countryFolder]) language = countryFolerLangstoreMap[countryFolder];
+        let langstoreUrl = currentUrl.replace(countryFolder, 'langstore/' + language);
+        window.open(langstoreUrl,'_blank');
+      });
+    }
+
+  }
+
   let addKitchenSink = function() {
       console.log('addKitchenSink()');
       addButton('Kitchen Sink', 'maioKitchenSink');
@@ -622,6 +641,7 @@
                   //addGeoOpener();
                   addDocOpener();
                   addMiloBlockInfo();
+                  addOpenLangstore();
               }, 1000);
 
 
