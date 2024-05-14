@@ -1,4 +1,4 @@
-(function() {
+//(function() {
 
   const appInfo = 'Jira Note Remote ver 0.2';
   'use strict';
@@ -162,4 +162,4 @@
   });
 
 
-})();
+//})();
