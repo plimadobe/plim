@@ -133,6 +133,27 @@
       var result = JSON.stringify(jiraNoteObj);
       localStorage.setItem(jiraNoteKey, result);
   };
+
+  function backupJiraNote() {
+    let localStorageJiraNote = localStorage.getItem(jiraNoteKey);
+
+    const t = new Date();
+    const date = ('0' + t.getDate()).slice(-2);
+    const month = ('0' + (t.getMonth() + 1)).slice(-2);
+    const year = t.getFullYear();
+
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(localStorageJiraNote));
+    element.setAttribute('download', `jiranote-${date}-${month}-${year}.txt`);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);    
+
+  }
   //END BASE64
 
   
@@ -149,6 +170,7 @@
 
           var textArea = '<h4>Jira Note</h4><textarea id="'+jiraNoteKey+'" name="'+jiraNoteKey+'" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#000;color:#FFF" onchange="saveJiraNote();" onkeyup="saveJiraNote();" placeholder="Make your note at here."></textarea>';
           textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveJiraNote2();">';
+          textArea += '<input class="button aui-button aui-button-primary" type="button" value="Backup" onclick="backupJiraNote();">';
 
           var targetPosition = document.getElementById("viewissuesidebar");
           targetPosition.insertAdjacentHTML('beforeend', textArea);
