@@ -14,6 +14,17 @@
 
 
     // Your code here...
+    console.log(GM_info.script.name + ' ver ' + GM_info.script.version);
+
+    //BEGIN Calling jiranote
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.charset = 'utf-8';
+    script.src = 'https://main--plim--plimadobe.hlx.page/bookmarklets/jiranote/jiranote-remote.js';
+    script.id = 'maio-js';
+    head.appendChild(script);
+    //END Calling jiranote
 
 
     var heightTextArea = 300;

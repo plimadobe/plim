@@ -6,6 +6,7 @@
 
   console.log(appInfo);
   console.log('document.URL: ' + document.URL);
+  console.log('remote - default')
 
     //BEGIN BASE64
     //var jiraNoteData = '[{"id":"GWP-7361","timestamp":1669849035050,"contents":"7361 blah blah blah"},{"id":"GWP-7364","timestamp":1669849035050,"contents":"7364 blah blah blah"},{"id":"GWP-7562","timestamp":1669849035072,"contents":"7562 blah blah blah"},{"id":"GWP-1234","timestamp":1669849035072,"contents":"1234 blah blah blah"}]';
