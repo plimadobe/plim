@@ -55,7 +55,7 @@
           console.log('Clean old notes');
           if (jiraNoteObj !== null || jiraNoteObj !== undefined) {
               var ts = new Date().getTime();
-              ts = ts - (1000 * 60 * 60 * 24 * 120);
+              ts = ts - (1000 * 60 * 60 * 24 * 120);//120days
               for (var i = jiraNoteObj.length - 1; i >= 0; i--) {
                   console.log(i + ' : ' + jiraNoteObj[i].timestamp + ' : ' + ts);
                   if (jiraNoteObj[i].timestamp < ts) {
@@ -86,6 +86,7 @@
     let ticketId = getTicketId(sprint);
     clearTimeout(tJiraNote);
     tJiraNote = setTimeout(function() {
+      if ($('#jiraNote').val().trim().length > 0) {
         var ts = new Date().getTime();
         console.log('All changes saved:' + ts);
         localStorageJiraNote = localStorage.getItem(jiraNoteKey);
@@ -93,7 +94,7 @@
         var newObj = {
             id: ticketId,
             timestamp: ts,
-            contents: $('#jiraNote').val()
+            contents: $('#jiraNote').val().trim()
         };
         for (var i = 0; i < jiraNoteObj.length; i++) {
             if (jiraNoteObj[i].id == ticketId) {
@@ -106,6 +107,8 @@
         console.log("PUSH: " + ticketId + " : " + $('#jiraNote').val());
         var result = JSON.stringify(jiraNoteObj);
         localStorage.setItem(jiraNoteKey, result);
+
+      }
     }, 1500);
   };
 
@@ -168,7 +171,9 @@
 
   function saveImportJiraNote() {
     localStorage.setItem(jiraNoteKey, document.querySelector('#' + jiraNoteKey + 'Import').value.trim());
+    cancelImportJiraNote();    
     alert('Imported.\nRefresh the browser.');
+
   }
 
   function cancelImportJiraNote() {
