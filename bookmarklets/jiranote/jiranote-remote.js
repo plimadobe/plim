@@ -58,8 +58,8 @@
               ts = ts - (1000 * 60 * 60 * 24 * 120);//120days
               for (var i = jiraNoteObj.length - 1; i >= 0; i--) {
                   console.log(i + ' : ' + jiraNoteObj[i].timestamp + ' : ' + ts);
-                  if (jiraNoteObj[i].timestamp < ts) {
-                      console.log('DELETE : ' + jiraNoteObj[i].id + ' : ' + jiraNoteObj[i].timestamp);
+                  if (jiraNoteObj[i].timestamp < ts || (jiraNoteObj[i].contents.trim().length == 0)) {
+                      console.log('DELETE : ' + jiraNoteObj[i].id + ' : ' + jiraNoteObj[i].timestamp + ' : ' + jiraNoteObj[i].contents.trim().length);
                       jiraNoteObj.splice(i, 1);
                       newJiraNote = false;
                       cleanJiraNote = false;
@@ -86,7 +86,6 @@
     let ticketId = getTicketId(sprint);
     clearTimeout(tJiraNote);
     tJiraNote = setTimeout(function() {
-      if ($('#jiraNote').val().trim().length > 0) {
         var ts = new Date().getTime();
         console.log('All changes saved:' + ts);
         localStorageJiraNote = localStorage.getItem(jiraNoteKey);
@@ -108,7 +107,7 @@
         var result = JSON.stringify(jiraNoteObj);
         localStorage.setItem(jiraNoteKey, result);
 
-      }
+
     }, 1500);
   };
 
