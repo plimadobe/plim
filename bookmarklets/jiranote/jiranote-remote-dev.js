@@ -209,11 +209,11 @@
         console.log('search result:'+result);
 
         //display result
-        let textArea = '<div id="jiraNoteSearchContainer">';
-        textArea += `<h4>Jira Note Search result for ${qs}</h4>`;
+        let textArea = '<div id="jiraNoteSearchContainer" style="margin-top 20px;background-color:rgba(183, 240, 247, 0.5);padding:4px;">';
+        textArea += `<h4>Jira Note Search result for '${qs}'</h4>`;
         textArea += `<p>`;
         for (let i = 0; i < result.length; i++){
-          textArea += `<a href="https://jira.corp.adobe.com/browse/${result[i]}" target="_blank">${result[i]}</a>`;
+          textArea += `<a href="https://jira.corp.adobe.com/browse/${result[i]}" target="_blank">${result[i]}</a><br />`;
         }
         textArea += `</p>`;
         textArea += '</div>';
