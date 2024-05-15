@@ -184,6 +184,10 @@
   function searchJiraNote() {
     console.log('searchJiraNote()');
 
+    if (document.querySelector('#jiraNoteSearchContainer')) {
+      document.querySelector('#jiraNoteSearchContainer').remove();
+    }
+
     let qs = prompt('Enter a key word');
     if ((qs = qs.toLowerCase().trim()).length < 1) throw new Error;
 
@@ -203,6 +207,21 @@
           }
         };
         console.log('search result:'+result);
+
+        //display result
+        let textArea = '<div id="jiraNoteSearchContainer">';
+        textArea += `<h4>Jira Note Search result for ${qs}</h4>`;
+        textArea += `<p>`;
+        for (let i = 0; i < result.length; i++){
+          textArea += `<a href="https://jira.corp.adobe.com/browse/${result[i]}" target="_blank">${result[i]}</a>`;
+        }
+        textArea += `</p>`;
+        textArea += '</div>';
+    
+        let elem = document.querySelector('#jiraNoteContainer');
+        elem.insertAdjacentHTML('afterend', textArea);
+  
+
 
         
     };
