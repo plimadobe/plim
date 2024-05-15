@@ -5,7 +5,6 @@
   //throw 'throw';
   console.log(appInfo);
   console.log('document.URL: ' + document.URL);
-  console.log('remote - default')
   //BEGIN BASE64
   //var jiraNoteData = '[{"id":"GWP-7361","timestamp":1669849035050,"contents":"7361 blah blah blah"},{"id":"GWP-7364","timestamp":1669849035050,"contents":"7364 blah blah blah"},{"id":"GWP-7562","timestamp":1669849035072,"contents":"7562 blah blah blah"},{"id":"GWP-1234","timestamp":1669849035072,"contents":"1234 blah blah blah"}]';
   var sprint = false;
@@ -156,10 +155,8 @@
   }
 
   function importJiraNote() {
-    //console.log('importJiraNote()');
-    let dataFormat = `[{"id":"DOTCOM-0001","timestamp":1706055481903,"contents":"Note1"},{"id":"DOTCOM-0002","timestamp":1706055481903,"contents":"Note2"}]`;
     let textArea = '<div id="jiraNoteImportContainer">';
-    textArea += '<h4>Import Jira Note data</h4><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#000" placeholder="Paste the Jira Note Data here.\n!!! Your all Jira Note data will be overwritten. !!!\n\nData format example:\n'+dataFormat+'"></textarea>';
+    textArea += '<h4>Import Jira Note data</h4><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#000" placeholder="Paste the Jira Note Data here.\n!!! Your all Jira Note data will be overwritten. !!!"></textarea>';
     textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveImportJiraNote();">';
     textArea += '<input class="button aui-button aui-button-primary" type="button" value="Cancel" onclick="cancelImportJiraNote();">';
     textArea += '</div>';
@@ -170,7 +167,6 @@
   }
 
   function saveImportJiraNote() {
-    //console.log('saveImportJiraNote()');
     localStorage.setItem(jiraNoteKey, document.querySelector('#' + jiraNoteKey + 'Import').value.trim());
     alert('Imported.\nRefresh the browser.');
   }
