@@ -86,55 +86,55 @@
   function saveJiraNote() {
     let ticketId = getTicketId(sprint);
     clearTimeout(tJiraNote);
-      tJiraNote = setTimeout(function() {
-          var ts = new Date().getTime();
-          console.log('All changes saved:' + ts);
-          localStorageJiraNote = localStorage.getItem(jiraNoteKey);
-          jiraNoteObj = JSON.parse(localStorageJiraNote);
-          var newObj = {
-              id: ticketId,
-              timestamp: ts,
-              contents: $('#jiraNote').val()
-          };
-          for (var i = 0; i < jiraNoteObj.length; i++) {
-              if (jiraNoteObj[i].id == ticketId) {
-                  jiraNoteObj.splice(i, 1);
-                  console.log("SPLICE: " + ticketId);
-                  break;
-              };
-          };
-          jiraNoteObj.push(newObj);
-          console.log("PUSH: " + ticketId + " : " + $('#jiraNote').val());
-          var result = JSON.stringify(jiraNoteObj);
-          localStorage.setItem(jiraNoteKey, result);
-      }, 1500);
+    tJiraNote = setTimeout(function() {
+        var ts = new Date().getTime();
+        console.log('All changes saved:' + ts);
+        localStorageJiraNote = localStorage.getItem(jiraNoteKey);
+        jiraNoteObj = JSON.parse(localStorageJiraNote);
+        var newObj = {
+            id: ticketId,
+            timestamp: ts,
+            contents: $('#jiraNote').val()
+        };
+        for (var i = 0; i < jiraNoteObj.length; i++) {
+            if (jiraNoteObj[i].id == ticketId) {
+                jiraNoteObj.splice(i, 1);
+                console.log("SPLICE: " + ticketId);
+                break;
+            };
+        };
+        jiraNoteObj.push(newObj);
+        console.log("PUSH: " + ticketId + " : " + $('#jiraNote').val());
+        var result = JSON.stringify(jiraNoteObj);
+        localStorage.setItem(jiraNoteKey, result);
+    }, 1500);
   };
 
   function saveJiraNote2() {
     var ticketId = getTicketId(sprint);
     var ts = new Date().getTime();
-      console.log('All changes saved:' + ts);
-      localStorageJiraNote = localStorage.getItem(jiraNoteKey);
-      jiraNoteObj = JSON.parse(localStorageJiraNote);
-      var newObj = {
-          id: ticketId,
-          timestamp: ts,
-          contents: $('#jiraNote').val()
-      };
-      for (var i = 0; i < jiraNoteObj.length; i++) {
-          if (jiraNoteObj[i].id == ticketId) {
-              jiraNoteObj.splice(i, 1);
-              console.log("SPLICE: " + ticketId);
-              break;
-          };
-      };
-      jiraNoteObj.push(newObj);
-      console.log("PUSH: " + ticketId + " : " + $('#jiraNote').val());
-      var result = JSON.stringify(jiraNoteObj);
-      localStorage.setItem(jiraNoteKey, result);
+    console.log('All changes saved:' + ts);
+    localStorageJiraNote = localStorage.getItem(jiraNoteKey);
+    jiraNoteObj = JSON.parse(localStorageJiraNote);
+    var newObj = {
+        id: ticketId,
+        timestamp: ts,
+        contents: $('#jiraNote').val()
+    };
+    for (var i = 0; i < jiraNoteObj.length; i++) {
+        if (jiraNoteObj[i].id == ticketId) {
+            jiraNoteObj.splice(i, 1);
+            console.log("SPLICE: " + ticketId);
+            break;
+        };
+    };
+    jiraNoteObj.push(newObj);
+    console.log("PUSH: " + ticketId + " : " + $('#jiraNote').val());
+    var result = JSON.stringify(jiraNoteObj);
+    localStorage.setItem(jiraNoteKey, result);
   };
 
-  function backupJiraNote() {
+  function exportJiraNote() {
     let localStorageJiraNote = localStorage.getItem(jiraNoteKey);
 
     const t = new Date();
@@ -154,6 +154,20 @@
     document.body.removeChild(element);    
 
   }
+
+  function importJiraNote() {
+    let textArea = '<div id="jiraNoteImportContainer">';
+    textArea += '<h4>Jira Note</h4><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#FFF" placeholder="Paste the Jira Note Data here.\n!!! Your all Jira Note data will be overwritten. !!!"></textarea>';
+    textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveImportJiraNote();">';
+    textArea += '</div>';
+
+    //localStorage.setItem(jiraNoteKey, result);
+
+  }
+
+  function saveImportJiraNote() {
+    console.log('saveImportJiraNote()');
+  }
   //END BASE64
 
   
@@ -168,11 +182,14 @@
       setTimeout(function() {
           console.log('Load Jira Note...');
 
-          var textArea = '<h4>Jira Note</h4><textarea id="'+jiraNoteKey+'" name="'+jiraNoteKey+'" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#000;color:#FFF" onchange="saveJiraNote();" onkeyup="saveJiraNote();" placeholder="Make your note at here."></textarea>';
-          textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveJiraNote2();">';
-          textArea += '<input class="button aui-button aui-button-primary" type="button" value="Backup" onclick="backupJiraNote();">';
+          let textArea = '<div id="jiraNoteContainer">';
+          textArea += '<h4>Jira Note</h4><textarea id="'+jiraNoteKey+'" name="'+jiraNoteKey+'" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#000;color:#FFF" onchange="saveJiraNote();" onkeyup="saveJiraNote();" placeholder="Make your note at here."></textarea>';
+          //textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveJiraNote2();">';
+          textArea += '<input class="button aui-button aui-button-primary" type="button" value="Export" onclick="exportJiraNote();">';
+          textArea += '<input class="button aui-button aui-button-primary" type="button" value="Import" onclick="importJiraNote();">';
+          textArea += '</div>';
 
-          var targetPosition = document.getElementById("viewissuesidebar");
+          let targetPosition = document.getElementById("viewissuesidebar");
           targetPosition.insertAdjacentHTML('beforeend', textArea);
 
           if (ticketId != '') {
