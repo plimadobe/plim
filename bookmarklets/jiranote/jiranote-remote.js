@@ -161,6 +161,7 @@
     let textArea = '<div id="jiraNoteImportContainer">';
     textArea += '<h4>Import Jira Note data</h4><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#000" placeholder="Paste the Jira Note Data here.\n!!! Your all Jira Note data will be overwritten. !!!\n\nData format example:\n'+dataFormat+'"></textarea>';
     textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveImportJiraNote();">';
+    textArea += '<input class="button aui-button aui-button-primary" type="button" value="Cancel" onclick="cancelImportJiraNote();">';
     textArea += '</div>';
 
     let elem = document.querySelector('#jiraNoteContainer');
@@ -171,9 +172,11 @@
   function saveImportJiraNote() {
     //console.log('saveImportJiraNote()');
     localStorage.setItem(jiraNoteKey, document.querySelector('#' + jiraNoteKey + 'Import').value.trim());
-    document.querySelector('#' + jiraNoteKey + 'ImportContainer').remove();
     alert('Imported.\nRefresh the browser.');
+  }
 
+  function cancelImportJiraNote() {
+    document.querySelector('#' + jiraNoteKey + 'ImportContainer').remove();
   }
   //END BASE64
 
