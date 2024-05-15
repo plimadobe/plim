@@ -158,7 +158,7 @@
   function importJiraNote() {
     //console.log('importJiraNote()');
     let textArea = '<div id="jiraNoteImportContainer">';
-    textArea += '<h4>Jira Note</h4><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#FFF" placeholder="Paste the Jira Note Data here.\n!!! Your all Jira Note data will be overwritten. !!!"></textarea>';
+    textArea += '<h4>Jira Note</h4><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#000" placeholder="Paste the Jira Note Data here.\n!!! Your all Jira Note data will be overwritten. !!!"></textarea>';
     textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveImportJiraNote();">';
     textArea += '</div>';
 
@@ -169,7 +169,7 @@
 
   function saveImportJiraNote() {
     //console.log('saveImportJiraNote()');
-    localStorage.setItem(jiraNoteKey, document.querySelector('#' + jiraNoteKey + 'Import').val().trim());
+    localStorage.setItem(jiraNoteKey, document.querySelector('#' + jiraNoteKey + 'Import').value.trim());
     document.querySelector('#' + jiraNoteKey + 'Import').remove();
     alert('Imported.\nRefresh the browser.');
 
