@@ -1,6 +1,6 @@
 //(function() {
 
-  const appInfo = 'Jira Note Remote ver 0.2';
+  const appInfo = 'Jira Note Remote Dev ver 0.291';
   'use strict';
   //throw 'throw';
   console.log(appInfo);

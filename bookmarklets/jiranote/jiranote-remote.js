@@ -1,6 +1,6 @@
 //(function() {
 
-const appInfo = 'Jira Note Remote ver 0.2';
+const appInfo = 'Jira Note Remote ver 0.291';
 'use strict';
 //throw 'throw';
 console.log(appInfo);
@@ -158,8 +158,10 @@ function exportJiraNote() {
 
 function importJiraNote() {
   if (!document.querySelector('#jiraNoteImportContainer')) {
-    let textArea = '<div id="jiraNoteImportContainer">';
-    textArea += '<h4>Import Jira Note data</h4><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#000" placeholder="Paste the Jira Note Data here.\n!!! Your all Jira Note data will be overwritten. !!!"></textarea>';
+    let textArea = '<div id="jiraNoteImportContainer" style="margin-top:20px;">';
+    //textArea += '<h4>Import Jira Note data</h4><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#000" placeholder="Paste the Jira Note Data here.\n!!! Your all Jira Note data will be overwritten. !!!"></textarea>';
+    let localStorageJiraNote = localStorage.getItem(jiraNoteKey);
+    textArea += '<h4>Import Jira Note data</h4><p style="padding:4px;background-color:#f44336;color:#fff;"><strong>Danger!</strong> Your all Jira Note data will be overwritten.</p><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#000">'+localStorageJiraNote.trim()+'</textarea>';
     textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveImportJiraNote();">';
     textArea += '<input class="button aui-button aui-button-primary" type="button" value="Cancel" onclick="cancelImportJiraNote();">';
     textArea += '</div>';
@@ -209,7 +211,7 @@ function searchJiraNote() {
       console.log('search result:'+result);
 
       //display result
-      let textArea = '<div id="jiraNoteSearchContainer" style="margin-top 20px;background-color:rgba(183, 240, 247, 0.5);padding:4px;">';
+      let textArea = '<div id="jiraNoteSearchContainer" style="margin-top:20px;background-color:rgba(183, 240, 247, 0.5);padding:4px;">';
       textArea += `<h4>Jira Note Search result for '${qs}'</h4>`;
       textArea += `<p>`;
       for (let i = 0; i < result.length; i++){
@@ -241,7 +243,7 @@ $(document).ready(function() {
     setTimeout(function() {
         console.log('Load Jira Note...');
 
-        let textArea = '<div id="jiraNoteContainer">';
+        let textArea = '<div id="jiraNoteContainer" style="margin-top:20px;">';
         textArea += '<h4>Jira Note</h4><textarea id="'+jiraNoteKey+'" name="'+jiraNoteKey+'" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#000;color:#FFF" onchange="saveJiraNote();" onkeyup="saveJiraNote();" placeholder="Make your note at here."></textarea>';
         //textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveJiraNote2();">';
         textArea += '<input class="button aui-button aui-button-primary" type="button" value="Search" onclick="searchJiraNote();">';
