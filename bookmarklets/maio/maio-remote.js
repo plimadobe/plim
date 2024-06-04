@@ -615,6 +615,70 @@
 
   }
 
+  function addHiddenDialogTrigger(button) {
+    if(!button) {
+      return;
+    }
+
+    const dialogTrigger = document.createElement("button");
+    dialogTrigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      
+      const shouldProceed = window.confirm("Are you sure you want to publish?");
+      
+      if(!shouldProceed) {
+        return;
+      }
+      
+      button.click();
+    })
+    
+    dialogTrigger.classList.add("maio-hidden-dialog-trigger")
+    dialogTrigger.setAttribute("style", "position: absolute; inset: 0; z-index: 1; opacity: 0");
+    
+    button.parentElement.style.position = "relative";
+    button.insertAdjacentElement("afterend", dialogTrigger)
+  }
+
+  function hasHiddenDialogTrigger(button) {
+    return button instanceof HTMLElement && button.parentElement?.querySelector(".maio-hidden-dialog-trigger")
+  }
+
+  function addDialogBeforePublish() {
+    const helixSidekick = document.querySelector("helix-sidekick");
+
+    if(!helixSidekick?.shadowRoot) {
+      return;
+    }
+    
+    const sidekickObserver = new MutationObserver(() => {
+      const publishButton = helixSidekick.shadowRoot.querySelector(".publish button");
+
+      if(publishButton && !hasHiddenDialogTrigger(publishButton)) {
+        addHiddenDialogTrigger(publishButton);
+        sidekickObserver.disconnect();
+      }
+    })
+
+    sidekickObserver.observe(helixSidekick.shadowRoot, {
+      childList: true,
+      subtree: true,
+    })
+
+    const preflightObserver = new MutationObserver(() => {
+      const publishButton = document.querySelector(".preflight #publish-action button.preflight-action");
+
+      if(publishButton && !hasHiddenDialogTrigger(publishButton)) {
+        addHiddenDialogTrigger(publishButton);
+      }
+    })
+
+    preflightObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    })
+  }
+
   let checkMaio = function() {
       if (document.querySelector('#maioFooter')) {
           return true;
@@ -642,6 +706,7 @@
                   addDocOpener();
                   addMiloBlockInfo();
                   addOpenLangstore();
+                  addDialogBeforePublish();
               }, 1000);
 
 
