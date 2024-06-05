@@ -650,13 +650,18 @@
     if(!helixSidekick?.shadowRoot) {
       return;
     }
+
+    const publishButton = helixSidekick.shadowRoot.querySelector(".publish button");
+
+    if(publishButton && !hasHiddenDialogTrigger(publishButton)) {
+      addHiddenDialogTrigger(publishButton);
+    }
     
     const sidekickObserver = new MutationObserver(() => {
       const publishButton = helixSidekick.shadowRoot.querySelector(".publish button");
 
       if(publishButton && !hasHiddenDialogTrigger(publishButton)) {
         addHiddenDialogTrigger(publishButton);
-        sidekickObserver.disconnect();
       }
     })
 
@@ -698,6 +703,7 @@
       switch (pageType) {
           case 'miloPage':
               addBottom();
+              addDialogBeforePublish();
               setTimeout(() => {
                   addLocalLink();
                   addLinkFinder();
@@ -705,8 +711,7 @@
                   //addGeoOpener();
                   addDocOpener();
                   addMiloBlockInfo();
-                  addOpenLangstore();
-                  addDialogBeforePublish();
+                  addOpenLangstore();                  
               }, 1000);
 
 
