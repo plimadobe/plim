@@ -46,8 +46,8 @@
     vertical-align: middle;
   }
   #maioFolderInfo {
-    margin-left: 4px;
-    margin-right: 12px;
+    padding-left: 4px;
+    padding-right: 12px;
   }
   
   .maioButton {
