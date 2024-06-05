@@ -37,6 +37,7 @@
   }
   #maioContainer {
   display: inline;
+  padding-left: 4px;
   }
   
   #maioFolderInfo {
