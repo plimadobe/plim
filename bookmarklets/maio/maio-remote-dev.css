@@ -7,7 +7,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    min-height: 28px;
+    min-height: 34px;
     background-color: darkolivegreen;
     background-color: #C2571A;
     background-color: #DA621E;
@@ -38,7 +38,7 @@
   #maioContainer {
     /*display: inline;*/
     display: table;
-    min-height: 28px;
+    min-height: 34px;
     padding-left: 4px;
   }
   #maioContainer span {
@@ -69,6 +69,7 @@
   background-color: #F3F4F6;
   text-decoration: none;
   transition-duration: 0.1s;
+  color: #000;
   }
   
   .maioButton:disabled {
