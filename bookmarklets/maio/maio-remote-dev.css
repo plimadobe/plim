@@ -1,0 +1,193 @@
+.maioFooter {
+  font-family: system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  border-radius: 4px;
+    opacity: 85%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    min-height: 28px;
+    background-color: darkolivegreen;
+    background-color: #C2571A;
+    background-color: #DA621E;
+    background-color: #107896;
+    background-color: #3C6478;
+    color: lightyellow;
+    z-index: 999;
+  
+  }
+  .maioFooter a {
+  color: #ffffff;
+  text-decoration-line: none;
+  }
+  
+  
+  #maioFooterToggle {
+  font-family: system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 18px;
+  position: absolute;
+  margin-left: auto;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  }
+  #maioContainer {
+  display: inline;
+  }
+  
+  #maioFolderInfo {
+  margin-left: 8px;
+  }
+  
+  .maioButton {
+    background-color: transparent;
+    border: solid 1px #dedede;
+    border-radius: 6px;
+    color: #dedede;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 4px 6px;
+    cursor: pointer;
+    outline: none;
+    margin: 0 8px 0 0;
+  }
+  
+  .maioButton:hover {
+  background-color: #F3F4F6;
+  text-decoration: none;
+  transition-duration: 0.1s;
+  }
+  
+  .maioButton:disabled {
+  background-color: #FAFBFC;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959DA5;
+  cursor: default;
+  }
+  
+  .maioButton:active {
+  background-color: #EDEFF2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+  }
+  
+  .maioButton:focus {
+  outline: 1px transparent;
+  }
+  
+  .maioButton:before {
+  display: none;
+  }
+  
+  .maioButton:-webkit-details-marker {
+  display: none;
+  }
+  
+  .miloBlockInfo {
+  
+  }
+
+.maioFooter {
+  font-family: system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  border-radius: 4px;
+    opacity: 85%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    min-height: 28px;
+    background-color: darkolivegreen;
+    color: lightyellow;
+    z-index: 999;
+  
+  }
+  .maioFooter a {
+  color: #ffffff;
+  text-decoration-line: none;
+  }
+  
+  
+  #maioFooterToggle {
+  font-family: system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 18px;
+  position: absolute;
+  margin-left: auto;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  }
+  #maioContainer {
+  display: inline;
+  }
+  
+  #maioFolderInfo {
+  margin-left: 8px;
+  }
+  
+  .maioButton {
+  margin-left: 12px;
+  appearance: none;
+  background-color: #FAFBFC;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #24292E;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 500;
+  line-height: 18px;
+  list-style: none;
+  padding: 4px 8px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+  }
+  
+  .maioButton:hover {
+  background-color: #F3F4F6;
+  text-decoration: none;
+  transition-duration: 0.1s;
+  }
+  
+  .maioButton:disabled {
+  background-color: #FAFBFC;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959DA5;
+  cursor: default;
+  }
+  
+  .maioButton:active {
+  background-color: #EDEFF2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+  }
+  
+  .maioButton:focus {
+  outline: 1px transparent;
+  }
+  
+  .maioButton:before {
+  display: none;
+  }
+  
+  .maioButton:-webkit-details-marker {
+  display: none;
+  }
+  
+  .miloBlockInfo {
+  
+  }
