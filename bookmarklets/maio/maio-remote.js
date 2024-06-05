@@ -148,7 +148,7 @@
               document.querySelector('#maioContainer').style.display = 'none';
               document.querySelector('#maioFooter').style.width = '100px';
           } else {
-              document.querySelector('#maioContainer').style.display = 'inline';
+              document.querySelector('#maioContainer').style.display = 'table';
               document.querySelector('#maioFooter').style.width = '100%';
           }
 
@@ -178,7 +178,7 @@
               document.querySelector('#maioFooter').style.width = '100px';
               document.querySelector('#maioFooterToggle').innerText = 'Milo AIO >';
           } else {
-              document.querySelector('#maioContainer').style.display = 'inline';
+              document.querySelector('#maioContainer').style.display = 'table';
               document.querySelector('#maioFooter').style.width = '100%';
               document.querySelector('#maioFooterToggle').innerText = 'Milo AIO <';
           }
