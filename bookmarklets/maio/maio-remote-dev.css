@@ -36,10 +36,15 @@
   
   }
   #maioContainer {
-  display: inline;
-  padding-left: 4px;
+    /*display: inline;*/
+    display: table;
+    min-height: 28px;
+    padding-left: 4px;
   }
-  
+  #maioContainer span {
+    display: table-cell;
+    vertical-align: middle;
+  }
   #maioFolderInfo {
     margin-left: 4px;
     margin-right: 12px;
