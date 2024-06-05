@@ -50,7 +50,7 @@
       tArr.shift();
       tArr.shift();
       displayText = '/' + tArr.join('/');
-      var infoHtml = '<span id="maioFolderInfo"><a href="' + infoUrl + '" target="_blank">' + displayText + '</span>';
+      var infoHtml = '<span id="maioFolderInfo"><a href="' + infoUrl + '" target="_blank">Path: ' + displayText + '</span>';
       if (document.querySelector('body > helix-sidekick') === null) {
           prompt(displayText, infoUrl);
           console.log(displayText);

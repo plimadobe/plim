@@ -2,14 +2,19 @@
   font-family: system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 12px;
   border-radius: 4px;
-    opacity: 85%;
+    opacity: 90%;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    min-height: 28px;
+    min-height: 34px;
     background-color: darkolivegreen;
+    background-color: #C2571A;
+    background-color: #DA621E;
+    background-color: #107896;
+    background-color: #3C6478;
     color: lightyellow;
+    color: #dedede;
     z-index: 999;
   
   }
@@ -31,42 +36,40 @@
   
   }
   #maioContainer {
-  display: inline;
+    /*display: inline;*/
+    display: table;
+    min-height: 34px;
+    padding-left: 4px;
   }
-  
+  #maioContainer span {
+    display: table-cell;
+    vertical-align: middle;
+  }
   #maioFolderInfo {
-  margin-left: 8px;
+    padding-left: 4px;
+    padding-right: 12px;
   }
   
   .maioButton {
-  margin-left: 12px;
-  appearance: none;
-  background-color: #FAFBFC;
-  border: 1px solid rgba(27, 31, 35, 0.15);
-  border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-  box-sizing: border-box;
-  color: #24292E;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 500;
-  line-height: 18px;
-  list-style: none;
-  padding: 4px 8px;
-  position: relative;
-  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  white-space: nowrap;
-  word-wrap: break-word;
+    background-color: transparent;
+    border: solid 1px #dedede;
+    border-radius: 6px;
+    color: #dedede;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 4px 6px;
+    cursor: pointer;
+    outline: none;
+    margin: 0 8px 0 0;
   }
   
   .maioButton:hover {
   background-color: #F3F4F6;
   text-decoration: none;
   transition-duration: 0.1s;
+  color: #000;
   }
   
   .maioButton:disabled {
