@@ -484,7 +484,7 @@
         let currentUrl = window.location.href;
         let language = pageInfo.language.split('-')[0];//en, zh, ko
         if (countryFolerLangstoreMap[countryFolder]) language = countryFolerLangstoreMap[countryFolder];
-        let langstoreUrl = currentUrl.replace(countryFolder, 'langstore/' + language);
+        let langstoreUrl = currentUrl.replace('/' + countryFolder + '/', '/langstore/' + language + '/');
         window.open(langstoreUrl,'_blank');
       });
     }
