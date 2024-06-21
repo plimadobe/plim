@@ -491,6 +491,46 @@
 
   }
 
+  let addDisplayFragments = function() {
+    if (addButton('Fragments', 'maioDisplayFragments')) {
+      document.querySelector('#maioDisplayFragments').addEventListener('click', function() {
+        setInterval(function() {
+          let fs = document.querySelectorAll('.fragment[data-path]');
+          for (let i = 0; i < fs.length; i++) {
+            if (!fs[i].classList.contains('maioXF')) {
+              console.log(fs[i].getAttribute('data-path'));
+              fs[i].classList.add('maioXF');
+              let f = `<div style='background-color:yellow;color:red;'><a href='${fs[i].getAttribute('data-path')}' target='_blank'>${fs[i].getAttribute('data-path')}</a></div>`;
+              fs[i].insertAdjacentHTML('afterbegin', f)
+            }
+          }
+          }, 2000);
+              
+      });
+
+    }
+
+  }
+
+  let addHeadingHeighlighter = function() {
+    if (addButton('Headings', 'maioHeadingHeighlighter')) {
+      document.querySelector('#maioHeadingHeighlighter').addEventListener('click', function() {
+        setInterval(function() {
+          let headings = document.querySelectorAll('h1:not(.cMarker), h2:not(.cMarker), h3:not(.cMarker), h4:not(.cMarker), h5:not(.cMarker), h6:not(.cMarker)');
+          let headingArray = [...headings];
+          headingArray.forEach(heading => {
+              let tn = heading.tagName;
+              heading.textContent = tn + ':' + heading.textContent;
+              heading.style.color = '#F020D8';
+              heading.classList.add('cMarker');
+          });
+        }, 2000);
+    
+      });
+
+    }
+  }
+
   let addKitchenSink = function() {
       console.log('addKitchenSink()');
       addButton('Kitchen Sink', 'maioKitchenSink');
@@ -642,6 +682,8 @@
                   addDocOpener();
                   addMiloBlockInfo();
                   addOpenLangstore();                  
+                  addDisplayFragments();                  
+                  addHeadingHeighlighter();                  
               }, 1000);
 
 
