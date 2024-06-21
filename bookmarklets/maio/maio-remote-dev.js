@@ -492,6 +492,23 @@
   }
 
   let addDisplayFragments = function() {
+    if (addButton('Fragments', 'maioDisplayFragments')) {
+      document.querySelector('#maioDisplayFragments').addEventListener('click', function() {
+        setInterval(function() {
+          let fs = document.querySelectorAll('.fragment[data-path]');
+          for (let i = 0; i < fs.length; i++) {
+            if (!fs[i].classList.contains('maioXF')) {
+              console.log(fs[i].getAttribute('data-path'));
+              fs[i].classList.add('maioXF');
+              let f = `<div style='background-color:yellow;color:red;'><a href='${fs[i].getAttribute('data-path')}' target='_blank'>${fs[i].getAttribute('data-path')}</a></div>`;
+              fs[i].insertAdjacentHTML('afterbegin', f)
+            }
+          }
+          }, 2000);
+              
+      });
+
+    }
 
   }
 
