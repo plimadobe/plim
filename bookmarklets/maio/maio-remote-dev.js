@@ -148,7 +148,7 @@
               document.querySelector('#maioContainer').style.display = 'none';
               document.querySelector('#maioFooter').style.width = '100px';
           } else {
-              document.querySelector('#maioContainer').style.display = 'inline';
+              document.querySelector('#maioContainer').style.display = 'table';
               document.querySelector('#maioFooter').style.width = '100%';
           }
 
@@ -178,7 +178,7 @@
               document.querySelector('#maioFooter').style.width = '100px';
               document.querySelector('#maioFooterToggle').innerText = 'Milo AIO >';
           } else {
-              document.querySelector('#maioContainer').style.display = 'inline';
+              document.querySelector('#maioContainer').style.display = 'table';
               document.querySelector('#maioFooter').style.width = '100%';
               document.querySelector('#maioFooterToggle').innerText = 'Milo AIO <';
           }
@@ -484,11 +484,34 @@
         let currentUrl = window.location.href;
         let language = pageInfo.language.split('-')[0];//en, zh, ko
         if (countryFolerLangstoreMap[countryFolder]) language = countryFolerLangstoreMap[countryFolder];
-        let langstoreUrl = currentUrl.replace(countryFolder, 'langstore/' + language);
+        let langstoreUrl = currentUrl.replace('/' + countryFolder + '/', '/langstore/' + language + '/');
         window.open(langstoreUrl,'_blank');
       });
     }
 
+  }
+
+  let addDisplayFragments = function() {
+
+  }
+
+  let addHeadingHeighlighter = function() {
+    if (addButton('Headings', 'maioHeadingHeighlighter')) {
+      document.querySelector('#maioHeadingHeighlighter').addEventListener('click', function() {
+        setInterval(function() {
+          let headings = document.querySelectorAll('h1:not(.cMarker), h2:not(.cMarker), h3:not(.cMarker), h4:not(.cMarker), h5:not(.cMarker), h6:not(.cMarker)');
+          let headingArray = [...headings];
+          headingArray.forEach(heading => {
+              let tn = heading.tagName;
+              heading.textContent = tn + ':' + heading.textContent;
+              heading.style.color = '#F020D8';
+              heading.classList.add('cMarker');
+          });
+        }, 2000);
+    
+      });
+
+    }
   }
 
   let addKitchenSink = function() {
@@ -615,75 +638,6 @@
 
   }
 
-  function addHiddenDialogTrigger(button) {
-    if(!button) {
-      return;
-    }
-
-    const dialogTrigger = document.createElement("button");
-    dialogTrigger.addEventListener("click", (e) => {
-      e.preventDefault();
-      
-      const shouldProceed = window.confirm("Are you sure you want to publish?");
-      
-      if(!shouldProceed) {
-        return;
-      }
-      
-      button.click();
-    })
-    
-    dialogTrigger.classList.add("maio-hidden-dialog-trigger")
-    dialogTrigger.setAttribute("style", "position: absolute; inset: 0; z-index: 1; opacity: 0");
-    
-    button.parentElement.style.position = "relative";
-    button.insertAdjacentElement("afterend", dialogTrigger)
-  }
-
-  function hasHiddenDialogTrigger(button) {
-    return button instanceof HTMLElement && button.parentElement?.querySelector(".maio-hidden-dialog-trigger")
-  }
-
-  function addDialogBeforePublish() {
-    const helixSidekick = document.querySelector("helix-sidekick");
-
-    if(!helixSidekick?.shadowRoot) {
-      return;
-    }
-
-    const publishButton = helixSidekick.shadowRoot.querySelector(".publish button");
-
-    if(publishButton && !hasHiddenDialogTrigger(publishButton)) {
-      addHiddenDialogTrigger(publishButton);
-    }
-    
-    const sidekickObserver = new MutationObserver(() => {
-      const publishButton = helixSidekick.shadowRoot.querySelector(".publish button");
-
-      if(publishButton && !hasHiddenDialogTrigger(publishButton)) {
-        addHiddenDialogTrigger(publishButton);
-      }
-    })
-
-    sidekickObserver.observe(helixSidekick.shadowRoot, {
-      childList: true,
-      subtree: true,
-    })
-
-    const preflightObserver = new MutationObserver(() => {
-      const publishButton = document.querySelector(".preflight #publish-action button.preflight-action");
-
-      if(publishButton && !hasHiddenDialogTrigger(publishButton)) {
-        addHiddenDialogTrigger(publishButton);
-      }
-    })
-
-    preflightObserver.observe(document.body, {
-      childList: true,
-      subtree: true
-    })
-  }
-
   let checkMaio = function() {
       if (document.querySelector('#maioFooter')) {
           return true;
@@ -703,7 +657,6 @@
       switch (pageType) {
           case 'miloPage':
               addBottom();
-              addDialogBeforePublish();
               setTimeout(() => {
                   addLocalLink();
                   addLinkFinder();
@@ -712,6 +665,8 @@
                   addDocOpener();
                   addMiloBlockInfo();
                   addOpenLangstore();                  
+                  addDisplayFragments();                  
+                  addHeadingHeighlighter();                  
               }, 1000);
 
 
