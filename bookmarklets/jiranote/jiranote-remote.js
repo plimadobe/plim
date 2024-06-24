@@ -16,6 +16,7 @@ sprint = false;//For Blocking Sprint mode
 var localStorageJiraNote = '';
 var heightTextArea = 300;
 let jiraNoteKey = 'jiraNote';
+let jiraNoteExpiry = 365;//Days
 
 function getTicketId(s) {
   if (s) {
@@ -55,7 +56,9 @@ function loadJiraNote() {
         console.log('Clean old notes');
         if (jiraNoteObj !== null || jiraNoteObj !== undefined) {
             var ts = new Date().getTime();
-            ts = ts - (1000 * 60 * 60 * 24 * 120);//120days
+            //ts = ts - (1000 * 60 * 60 * 24 * 120);//120days
+            console.log('jiraNoteExpiry: ' + jiraNoteExpiry + 'days');
+            ts = ts - (1000 * 60 * 60 * 24 * jiraNoteExpiry);
             for (var i = jiraNoteObj.length - 1; i >= 0; i--) {
                 console.log(i + ' : ' + jiraNoteObj[i].timestamp + ' : ' + ts);
                 if (jiraNoteObj[i].timestamp < ts || (jiraNoteObj[i].contents.trim().length == 0)) {
