@@ -532,127 +532,11 @@
   }
 
   let addKitchenSink = function() {
-      console.log('addKitchenSink()');
-      addButton('Kitchen Sink', 'maioKitchenSink');
-
-
-      document.querySelector('#maioKitchenSink').addEventListener('click', function() {
-          //do something for this button
-          var xmlhttp = new XMLHttpRequest();
-          var kitchenSinkUrl = 'https://adobe.sharepoint.com/sites/adobecom/_api/web/GetListUsingPath(DecodedUrl=@a1)/RenderListDataAsStream?@a1=%27%2Fsites%2Fadobecom%2FShared%20Documents%27&RootFolder=%2Fsites%2Fadobecom%2FShared%20Documents%2Fmilo%2Fdocs%2Flibrary%2Fkitchen%2Dsink&View=d776cf70-9b7e-4ab7-b9da-9e0f8e03a7d2&TryNewExperienceSingle=TRUE';
-          var obj;
-          xmlhttp.onreadystatechange = function() {
-              if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-                  if (xmlhttp.status == 200) {
-                      console.log(xmlhttp.responseText);
-                      let obj = JSON.parse(xmlhttp.responseText);
-                      let htmlString = '';
-                      for (var i = 0; i < obj.Row.length; i++) {
-                          if (obj.Row[i].FSObjType == 0) {
-                              var ts = obj.Row[i].FileRef;
-                              ts = ts.replace('/sites/adobecom/Shared Documents/milo', '')
-                              ts = ts.replace('.docx', '');
-                              console.log(ts);
-                              var ta = ts.split('/');
-                              ta[ta.length-1] = getMiloName(ta[ta.length-1]);
-                              ts = ta.join('/');
-                              ts = 'https://main--milo--adobecom.hlx.page' + ts;
-                              htmlString += `<div><a href='${ts}' target='_blank'>${obj.Row[i].FileLeafRef}</a></div>`;
-
-                              // /sites/adobecom/Shared Documents/milo
-                          }
-
-                      }
-                      htmlString = '<html><head><title>Kitchen Sink</title><body>' + htmlString + '</body></html>';
-                      var tab = window.open('about: blank', '_blank');
-                      tab.document.write(htmlString);
-                      tab.document.close();
-
-                      //const obj = JSON.parse(xmlhttp.responseText);
-                      //console.log(obj.edit.url);
-                      //window.open(obj.edit.url, '_blank');
-                  } else if (xmlhttp.status == 400) {
-                      alert('There was an error 400');
-                  } else {
-                      alert('Check your log-in status for Milo repository. \nSomething else other than 200 was returned');
-                  }
-              }
-          };
-          xmlhttp.open("POST", kitchenSinkUrl, true);
-          xmlhttp.send();
-
-
-      });
-
+    //removed until have the confirmation
   }
 
   let addDocOpener = function() {
-      console.log('addDocOpener()');
-      addButton('Open Word docs by URL', 'maioOpenWord');
-      document.querySelector('#maioOpenWord').addEventListener('click', function() {
-          //do something for this button
-          let getEditUrl = function(reqUrl) {
-              console.log(reqUrl);
-              var xmlhttp = new XMLHttpRequest();
-              xmlhttp.onreadystatechange = function() {
-                  if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-                      if (xmlhttp.status == 200) {
-                          const obj = JSON.parse(xmlhttp.responseText);
-                          console.log(obj.edit.url);
-                          window.open(obj.edit.url, '_blank');
-                      }
-                      else if (xmlhttp.status == 400) {
-                          alert('There was an error 400');
-                      }
-                      else {
-                          alert('Check your Sidekick log-in status. \nSomething else other than 200 was returned');
-                      }
-                  }
-              };
-              xmlhttp.open("GET", reqUrl, true);
-              xmlhttp.send();
-          };
-          let mUrls = prompt('Enter Milo preview URLs');
-          if ((mUrls = mUrls.trim()).length < 1) throw new Error;
-          var mua;
-          if (mUrls.search(',') > 0) {
-              mua = mUrls.split(',')
-              } else {
-                  mua = mUrls.split('\n');
-              }
-          if (mua.length > 10) throw alert('Terminate to avoid opening too many pages at once.\nDo not enter more than 10 URLs'), new Error;
-          let repo = 'cc', branch = 'main';
-          for (var i = 0; i < mua.length; i++) {
-              if (mua[i].search('https') < 0) {
-                  throw alert('Check URLs, it should start with https'), new Error;
-              }
-
-              console.log(mua[i]);
-              let tA = mua[i].split('/');
-              tA.shift();
-              tA.shift();
-              let hostName = tA.shift();
-              let reqPath = '';
-              for (let j = 0; j < tA.length; j++) {
-                  reqPath += '/' + tA[j];
-              }
-
-              let hostNames = hostName.split('--');
-              if (mua[i].search('adobecom.hlx') < 0) {
-                  repo = getRepoPrompt(mua[i]);
-                  //branch = prompt('Enter branch. e.g) main, stage');
-              } else {
-                  repo = hostNames[1];
-                  //branch = hostNames[0];
-              }
-              branch = 'main';
-              let reqUrl = 'https://admin.hlx.page/status/adobecom/' + repo + '/' + branch;
-              console.log(reqPath);
-              getEditUrl(reqUrl + reqPath + '?editUrl=auto');
-          }
-
-      });
-
+    //removed until have the confirmation
   }
 
   let checkMaio = function() {
@@ -679,7 +563,6 @@
                   addLinkFinder();
                   addStageToggle();
                   //addGeoOpener();
-                  addDocOpener();
                   addMiloBlockInfo();
                   addOpenLangstore();                  
                   addDisplayFragments();                  
@@ -696,8 +579,6 @@
                   //addLinkLib();
                   addResizeMiloLib();
                   watchMiloLib();
-                  addDocOpener();
-                  addKitchenSink();
               }, 1000);
 
               break;
@@ -705,7 +586,6 @@
           case 'sharepointDrive':
               addBottom();
               addMultiViewOpener();
-              addDocOpener();
               addPathChanger();
 
               break;
