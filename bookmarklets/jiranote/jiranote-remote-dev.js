@@ -174,8 +174,7 @@ function importJiraNote() {
     //let elem = document.querySelector('#jiraNoteContainer');
     let elem = document.querySelector('#jiraNoteSubContainer');
 
-    //elem.insertAdjacentHTML('afterend', textArea);
-    elem.insertAdjacentHTML('beforeend', elem);
+    elem.insertAdjacentHTML('beforeend', textArea);
   }
 
 }
