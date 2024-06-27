@@ -93,7 +93,10 @@ function addFocusEvent() {
   const textArea = document.querySelector('#jiraNote');
   if (textArea.getAttribute('listener') !== 'true') {
     textArea.addEventListener("focus", (event) => {
-      console.log('textArea: '+event.target.val().trim());
+      if (textArea.value.trim() === '') {
+        loadJiraNote();
+      }
+      console.log('textArea: ' + textArea.value.trim());
       
     });
     textArea.setAttribute('listener', 'true');
