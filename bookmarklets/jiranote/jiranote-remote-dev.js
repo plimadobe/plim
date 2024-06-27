@@ -82,9 +82,24 @@ function loadJiraNote() {
             };
         };
     };
+    addFocusEvent();
     getUsed();
+    
     console.log('newJiraNote2:' + newJiraNote);
 };
+
+function addFocusEvent() {
+  //when focus, if the textare is empty, check if there is a data in the localstorage
+  const textArea = document.querySelector('#jiraNote');
+  if (textArea.getAttribute('listener') !== 'true') {
+    textArea.addEventListener("focus", (event) => {
+      console.log('textArea: '+event.target.val().trim());
+      
+    });
+    textArea.setAttribute('listener', 'true');
+  }
+
+}
 
 function saveJiraNote() {
   let ticketId = getTicketId(sprint);
