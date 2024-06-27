@@ -244,8 +244,8 @@ function searchJiraNote() {
       textArea += `</p>`;
       textArea += '</div>';
   
-      let elem = document.querySelector('#jiraNoteContainer');
-      elem.insertAdjacentHTML('afterend', textArea);
+      let elem = document.querySelector('#jiraNoteSubContainer');
+      elem.insertAdjacentHTML('afterbegin', textArea);
 
 
 
@@ -274,6 +274,7 @@ $(document).ready(function() {
         textArea += '<input class="button aui-button aui-button-secondary" type="button" value="Export" onclick="exportJiraNote();">';
         textArea += '<input class="button aui-button aui-button-secondary" type="button" value="Import" onclick="importJiraNote();">';
         textArea += '<span id="'+jiraNoteKey+'Used" style="color: grey;margin-left: 12px;">xx% used</span>';
+        textArea += '<div id="'+jiraNoteKey+'SubContainer"></div>';
         textArea += '</div>';
 
         let targetPosition = document.getElementById("viewissuesidebar");
