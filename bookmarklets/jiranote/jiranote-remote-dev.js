@@ -1,6 +1,6 @@
 //(function() {
 
-const appInfo = 'Jira Note Remote ver 0.291';
+const appInfo = 'Jira Note Remote ver 0.292';
 'use strict';
 //throw 'throw';
 console.log(appInfo);
@@ -162,6 +162,7 @@ function exportJiraNote() {
 
 function importJiraNote() {
   if (!document.querySelector('#jiraNoteImportContainer')) {
+    console.log('importJiraNote()');
     let textArea = '<div id="jiraNoteImportContainer" style="margin-top:20px;">';
     //textArea += '<h4>Import Jira Note data</h4><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#000" placeholder="Paste the Jira Note Data here.\n!!! Your all Jira Note data will be overwritten. !!!"></textarea>';
     let localStorageJiraNote = localStorage.getItem(jiraNoteKey);
@@ -170,8 +171,11 @@ function importJiraNote() {
     textArea += '<input class="button aui-button aui-button-primary" type="button" value="Cancel" onclick="cancelImportJiraNote();">';
     textArea += '</div>';
 
-    let elem = document.querySelector('#jiraNoteContainer');
-    elem.insertAdjacentHTML('afterend', textArea);
+    //let elem = document.querySelector('#jiraNoteContainer');
+    let elem = document.querySelector('#jiraNoteSubContainer');
+
+    //elem.insertAdjacentHTML('afterend', textArea);
+    elem.insertAdjacentHTML('beforeend', elem);
   }
 
 }
