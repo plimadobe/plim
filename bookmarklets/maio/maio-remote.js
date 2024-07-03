@@ -1,5 +1,5 @@
 (function() {
-  const appInfo = 'Milo All in One ver 0.12';
+  const appInfo = 'Milo All in One ver 0.13';
 
   'use strict';
   //throw 'throw';
@@ -290,6 +290,33 @@
 
   }
 
+  let addLivePage = function() {
+    if (addButton('Open Live', 'maioLivePage')) {
+      document.querySelector('#maioLivePage').addEventListener('click', function() {
+        //do something for this button
+        let cHostname = window.location.hostname;
+        let cPathname = window.location.pathname;
+        let cSearch = window.location.search;
+        let nHostname = 'www.adobe.com';
+        if (cHostname.includes('bacom')) {
+            nHostname = 'business.adobe.com';
+        }
+        if (cSearch) {
+            cSearch += '&ts=' + Date.now();
+        } else {
+            cSearch = '?ts=' + Date.now();
+        }
+        if (cPathname.includes('.html')) {
+            window.open('https://' + nHostname + cPathname + cSearch, '_blank');
+        } else {
+            window.open('https://' + nHostname + cPathname + '.html' + cSearch, '_blank');
+        }
+      });
+    }
+
+
+  }
+
   let addResizeMiloLib = function() {
       console.log('addResizeMiloLib()');
       if (addButton('Resize Milo Lib', 'maioResizeLib')) {
@@ -562,6 +589,7 @@
                   addLocalLink();
                   addLinkFinder();
                   addStageToggle();
+                  addLivePage();
                   //addGeoOpener();
                   addMiloBlockInfo();
                   addOpenLangstore();                  
