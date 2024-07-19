@@ -547,7 +547,11 @@
           let headingArray = [...headings];
           headingArray.forEach(heading => {
               let tn = heading.tagName;
-              heading.textContent = tn + ':' + heading.textContent;
+              let fontSize = parseFloat(window.getComputedStyle(heading, null).getPropertyValue('font-size'));
+              let fontFamily = window.getComputedStyle(heading, null).getPropertyValue('font-family');
+              //heading.textContent = tn + ':' + heading.textContent;
+              heading.textContent = tn + ':' + fontSize +'px:' + heading.textContent;
+              heading.setAttribute('title', fontFamily);
               heading.style.color = '#F020D8';
               heading.classList.add('cMarker');
           });
