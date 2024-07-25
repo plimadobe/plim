@@ -562,6 +562,32 @@
     }
   }
 
+  let addSharepointOpener = function() {
+    if (addButton('Open Sharepoint', 'maioSharepointOpener')) {
+      document.querySelector('#maioSharepointOpener').addEventListener('click', function() {
+        //do something for this button
+        let instance = window.location.hostname.split('--')[1];
+        let pathname = window.location.pathname;
+        let li = pathname.lastIndexOf('/');
+        pathname = pathname.substring(0, li);
+        let sharepointUrl = 'https://adobe.sharepoint.com/sites/adobecom';
+        switch(instance) {
+          case 'cc':
+            sharepointUrl += `/CC/Forms/AllItems.aspx?ga=1&id=/sites/adobecom/CC/www${pathname}`;
+            break;
+          case 'express':
+            sharepointUrl += `/Express/Forms/AllItems.aspx?ga=1&id=/sites/adobecom/Express/website${pathname}`;
+            break;
+          default:
+            sharepointUrl += `/Shared%20Documents/Forms/AllItems.aspx?ga=1&id=/sites/adobecom/Shared%20Documents/${instance}${pathname}`;
+        }
+        window.open(sharepointUrl, '_blank');
+
+      });
+    }
+
+  }
+
   let addKitchenSink = function() {
     //removed until have the confirmation
   }
@@ -590,6 +616,7 @@
           case 'miloPage':
               addBottom();
               setTimeout(() => {
+                  addSharepointOpener();
                   addLocalLink();
                   addLinkFinder();
                   addStageToggle();
