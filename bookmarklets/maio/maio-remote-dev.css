@@ -107,12 +107,12 @@
 .maioCircle {
   width: 20px;
   height: 20px;
-  line-height: 20px;
+  line-height: 20px !important;
   border-radius: 50%;
-  /*font-size: 50px;*/
   color: #3C6478;
   text-align: center;
-  background: #fff;  
+  background: #fff;
+  font-weight: 900 !important;
 }
   
   .miloBlockInfo {
