@@ -13,7 +13,6 @@
     background-color: #DA621E;
     background-color: #107896;
     background-color: #3C6478;
-    background-color: #C2571A;
     color: lightyellow;
     color: #dedede;
     z-index: 999;
@@ -34,6 +33,7 @@
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
+  cursor: pointer;
   
   }
   #maioContainer {
@@ -110,7 +110,7 @@
   line-height: 20px;
   border-radius: 50%;
   /*font-size: 50px;*/
-  color: #C2571A;
+  color: #3C6478;
   text-align: center;
   background: #fff;  
 }

@@ -175,7 +175,7 @@
           let w = document.querySelector('#maioFooter').style.width;
           if (w === '100%'|| !w) {
               document.querySelector('#maioContainer').style.display = 'none';
-              document.querySelector('#maioFooter').style.width = '80px';
+              document.querySelector('#maioFooter').style.width = '40px';
               document.querySelector('#maioFooterToggle').innerText = 'M';
               document.querySelector('#maioFooterToggle').classList.add('maioCircle');
           } else {
