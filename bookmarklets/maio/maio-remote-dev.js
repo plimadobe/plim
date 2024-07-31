@@ -756,13 +756,13 @@
           case 'miloPage':
               addBottom();
               setTimeout(() => {
-                addText('Open');
+                addText('Open:');
                 addSharepointOpener();
                 addStageToggle();
                 addLivePage();
                 addOpenLangstore();                  
                 addSeparator();
-                addText('Tools: ');
+                addText('Tools:');
                 addLocalLink();
                   addLinkFinder();
                   //addGeoOpener();
