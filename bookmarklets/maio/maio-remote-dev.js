@@ -748,6 +748,36 @@
 
   }
 
+  let addOpenGEO = function() {
+    if (addButton('GEO', 'maioOpenGEO')) {
+      document.querySelector('#maioOpenGEO').addEventListener('click', function() {
+        let tcc = prompt(`Options \n1. Click OK to open US page.\n2. Enter country. Use comma separator to open multiple GEOs. e.g) au,kr`);
+        tcc = tcc.replace(/\s/g, '');
+        let cc = country();
+        ta = tcc.split(',');
+        for (let i = 0; i < ta.length; i++) {
+            if (cc === 'us') {
+                if (ta[i] !== 'us' && ta[i] !== '') {
+                    let tUrl = currentUrl.split('/');
+                    tUrl.splice(3, 0, ta[i]);
+                    window.open(tUrl.join('/'), "_blank");
+        
+                }
+            } else {
+                if (ta[i] === '' || ta[i] === 'us') {
+                    window.open(currentUrl.replace('/' + cc + '/', '/'), "_blank");
+                } else {
+                    window.open(currentUrl.replace('/' + cc + '/', '/' + ta[i] + '/'), "_blank");
+                }
+            }
+        }
+            
+      });
+
+    }
+
+  }
+
   let main = function() {
 
       console.log('main() Page Type:' + pageType);
@@ -762,7 +792,8 @@
               setTimeout(() => {
                   addText('Open:');
                   addSharepointOpener();
-                  addOpenLangstore();                  
+                  addOpenLangstore();
+                  addOpenGEO();
                   addStageToggle();
                   addLivePage();
                   addDocOpener();
