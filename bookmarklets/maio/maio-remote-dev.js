@@ -756,17 +756,19 @@
           case 'miloPage':
               addBottom();
               setTimeout(() => {
-                addText('Open:');
-                addSharepointOpener();
-                addStageToggle();
-                addLivePage();
-                addOpenLangstore();                  
-                addSeparator();
-                addText('Tools:');
-                addLocalLink();
+                  addText('Open:');
+                  addSharepointOpener();
+                  addOpenLangstore();                  
+                  addStageToggle();
+                  addLivePage();
+                  addDocOpener();
+
+                  addSeparator();
+
+                  addText('Tools:');
+                  addLocalLink();
                   addLinkFinder();
                   //addGeoOpener();
-                  addDocOpener();
                   addMiloBlockInfo();
                   addDisplayFragments();                  
                   addHeadingHeighlighter();                  
