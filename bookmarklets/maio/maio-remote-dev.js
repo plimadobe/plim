@@ -275,10 +275,10 @@
       let buttonText = '', newUrl = '';
       if (currentUrl.includes('//main--')) {
           newUrl = currentUrl.replace('//main--', '//stage--');
-          buttonText = 'Open stage';
+          buttonText = 'Stage';
       } else if (currentUrl.includes('//stage--')) {
           newUrl = currentUrl.replace('//stage--', '//main--');
-          buttonText = 'Open main';
+          buttonText = 'Main';
       }
       if (addButton(buttonText, 'maioStageToggle')) {
           document.querySelector('#maioStageToggle').addEventListener('click', function() {
@@ -291,7 +291,7 @@
   }
 
   let addLivePage = function() {
-    if (addButton('Open Live', 'maioLivePage')) {
+    if (addButton('Live', 'maioLivePage')) {
       document.querySelector('#maioLivePage').addEventListener('click', function() {
         //do something for this button
         let cHostname = window.location.hostname;
@@ -502,7 +502,7 @@
   let addOpenLangstore = function() {
     if (!window.location.href.includes('/langstore/')) {
       console.log('addOpenLangstore()');
-      addButton('Open langstore', 'maioOpenLangstore');
+      addButton('Langstore', 'maioOpenLangstore');
       document.querySelector('#maioOpenLangstore').addEventListener('click', function() {
         let countryFolerLangstoreMap = {'uk':'en-gb', 'au':'en-gb', 'africa':'en-gb', 'be_en':'en-gb', 'cy_en':'en-gb', 'gr_en':'en-gb', 'hk_en':'en-gb', 'i.e.':'en-gb', 'in':'en-gb', 'lu_en':'en-gb', 'mt':'en-gb', 'nz':'en-gb', 'sg':'en-gb', 'my_en':'en-gb', 'kw_en':'en-gb', 'qa_en':'en-gb', 'eg_en':'en-gb', 'ng':'en-gb', 'za':'en-gb', 'ca_fr':'fr-ca', 'ar':'es-419', 'la':'es-419', 'mx':'es-419', 'pe':'es-419', 'cl':'es-419', 'co':'es-419', 'cr':'es-419', 'ec':'es-419', 'gt':'es-419', 'pr':'es-419', 'cn':'zh-hans', 'hk_zh':'zh-hant', 'tw':'zh-hant'}
         let pageInfo = window.aldadp.pageInfo;
@@ -563,7 +563,7 @@
   }
 
   let addSharepointOpener = function() {
-    if (addButton('Open Sharepoint', 'maioSharepointOpener')) {
+    if (addButton('Sharepoint', 'maioSharepointOpener')) {
       document.querySelector('#maioSharepointOpener').addEventListener('click', function() {
         //do something for this button
         let instance = window.location.hostname.split('--')[1];
@@ -645,7 +645,7 @@
 
   let addDocOpener = function() {
       console.log('addDocOpener()');
-      addButton('Open Word docs by URL', 'maioOpenWord');
+      addButton('Word doc by URL', 'maioOpenWord');
       document.querySelector('#maioOpenWord').addEventListener('click', function() {
           //do something for this button
           let getEditUrl = function(reqUrl) {
@@ -732,6 +732,18 @@
 
   }
 
+  let addText = function(s) {
+    let htmlString = `<span class="maioSeparator">${s}</span>`;
+    if (document.querySelector('#maioContainer')) {
+        document.querySelector('#maioContainer').insertAdjacentHTML('beforeend', htmlString);
+        return true;
+    } else {
+        console.log('Check #maioContainer');
+        return false;
+    }
+
+  }
+
   let main = function() {
 
       console.log('main() Page Type:' + pageType);
@@ -744,11 +756,13 @@
           case 'miloPage':
               addBottom();
               setTimeout(() => {
+                addText('Open');
                 addSharepointOpener();
                 addStageToggle();
                 addLivePage();
                 addOpenLangstore();                  
                 addSeparator();
+                addText('Tools: ');
                 addLocalLink();
                   addLinkFinder();
                   //addGeoOpener();
