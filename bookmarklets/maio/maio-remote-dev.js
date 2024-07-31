@@ -146,7 +146,7 @@
           let w = document.querySelector('#maioFooter').style.width;
           if (w === '100%') {
               document.querySelector('#maioContainer').style.display = 'none';
-              document.querySelector('#maioFooter').style.width = '100px';
+              document.querySelector('#maioFooter').style.width = '80px';
           } else {
               document.querySelector('#maioContainer').style.display = 'table';
               document.querySelector('#maioFooter').style.width = '100%';
@@ -173,9 +173,9 @@
 
       document.querySelector('#maioFooterToggle').addEventListener('click', function() {
           let w = document.querySelector('#maioFooter').style.width;
-          if (w === '100%') {
+          if (w === '100%'|| !w) {
               document.querySelector('#maioContainer').style.display = 'none';
-              document.querySelector('#maioFooter').style.width = '100px';
+              document.querySelector('#maioFooter').style.width = '80px';
               document.querySelector('#maioFooterToggle').innerText = 'Milo AIO >';
           } else {
               document.querySelector('#maioContainer').style.display = 'table';
