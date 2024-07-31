@@ -103,6 +103,17 @@
   font-weight: 700;
   color: #FFF;
 }
+
+.maioCircle {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  /*font-size: 50px;*/
+  color: #C2571A;
+  text-align: center;
+  background: #fff;  
+}
   
   .miloBlockInfo {
   
