@@ -1,5 +1,5 @@
 (function() {
-  const appInfo = 'Milo All in One ver 0.12';
+  const appInfo = 'Milo All in One ver 0.13';
 
   'use strict';
   //throw 'throw';
@@ -286,6 +286,33 @@
               window.open(newUrl, '_blank');
           });
       }
+
+
+  }
+
+  let addLivePage = function() {
+    if (addButton('Open Live', 'maioLivePage')) {
+      document.querySelector('#maioLivePage').addEventListener('click', function() {
+        //do something for this button
+        let cHostname = window.location.hostname;
+        let cPathname = window.location.pathname;
+        let cSearch = window.location.search;
+        let nHostname = 'www.adobe.com';
+        if (cHostname.includes('bacom')) {
+            nHostname = 'business.adobe.com';
+        }
+        if (cSearch) {
+            cSearch += '&ts=' + Date.now();
+        } else {
+            cSearch = '?ts=' + Date.now();
+        }
+        if (cPathname.includes('.html')) {
+            window.open('https://' + nHostname + cPathname + cSearch, '_blank');
+        } else {
+            window.open('https://' + nHostname + cPathname + '.html' + cSearch, '_blank');
+        }
+      });
+    }
 
 
   }
@@ -663,6 +690,18 @@
       }
   }
 
+  let addSeparator = function() {
+    let htmlString = `<span class="maioSeparator">|</span>`;
+    if (document.querySelector('#maioContainer')) {
+        document.querySelector('#maioContainer').insertAdjacentHTML('beforeend', htmlString);
+        return true;
+    } else {
+        console.log('Check #maioContainer');
+        return false;
+    }
+
+  }
+
   let main = function() {
 
       console.log('main() Page Type:' + pageType);
@@ -675,13 +714,16 @@
           case 'miloPage':
               addBottom();
               setTimeout(() => {
-                  addLocalLink();
+                addSharepointOpener();
+                addStageToggle();
+                addLivePage();
+                addOpenLangstore();                  
+                addSeparator();
+                addLocalLink();
                   addLinkFinder();
-                  addStageToggle();
                   //addGeoOpener();
                   addDocOpener();
                   addMiloBlockInfo();
-                  addOpenLangstore();                  
                   addDisplayFragments();                  
                   addHeadingHeighlighter();                  
               }, 1000);

@@ -96,6 +96,12 @@
   .maioButton:-webkit-details-marker {
   display: none;
   }
+
+.maioSeparator {
+  padding-right: 8px;
+  font-weight: 700;
+  color: #FFF;
+}
   
   .miloBlockInfo {
   
