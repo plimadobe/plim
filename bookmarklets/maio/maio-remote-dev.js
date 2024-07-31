@@ -176,11 +176,13 @@
           if (w === '100%'|| !w) {
               document.querySelector('#maioContainer').style.display = 'none';
               document.querySelector('#maioFooter').style.width = '40px';
+              document.querySelector('#maioFooter').style.bottom = '40px';
               document.querySelector('#maioFooterToggle').innerText = 'M';
               document.querySelector('#maioFooterToggle').classList.add('maioCircle');
           } else {
               document.querySelector('#maioContainer').style.display = 'table';
               document.querySelector('#maioFooter').style.width = '100%';
+              document.querySelector('#maioFooter').style.bottom = '0';
               document.querySelector('#maioFooterToggle').innerText = 'Milo AIO <';
               document.querySelector('#maioFooterToggle').classList.remove('maioCircle');
           }
