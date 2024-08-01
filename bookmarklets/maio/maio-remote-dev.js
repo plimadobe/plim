@@ -531,7 +531,7 @@
             if (!fs[i].classList.contains('maioXF')) {
               console.log(fs[i].getAttribute('data-path'));
               fs[i].classList.add('maioXF');
-              let f = `<div style='background-color:yellow;color:red;'><a href='${fs[i].getAttribute('data-path')}' target='_blank'>${fs[i].getAttribute('data-path')}</a></div>`;
+              let f = `<div style='background-color:yellow;color:red;position:relative;'><a href='${fs[i].getAttribute('data-path')}' target='_blank'>${fs[i].getAttribute('data-path')}</a></div>`;
               fs[i].insertAdjacentHTML('afterbegin', f)
             }
           }
