@@ -33,6 +33,7 @@
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
+  cursor: pointer;
   
   }
   #maioContainer {
@@ -96,7 +97,48 @@
   .maioButton:-webkit-details-marker {
   display: none;
   }
+
+.maioSeparator {
+  padding-right: 8px;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.maioCircle {
+  width: 20px;
+  height: 20px;
+  line-height: 20px !important;
+  border-radius: 50%;
+  color: #3C6478;
+  text-align: center;
+  background: #fff;
+  font-weight: 900 !important;
+}
   
+.maioDynamicPrice {
+  background-color: lightgreen !important;
+}
+.maioPriceOverlay {
+  position: fixed;
+  text-align: center;
+  background-color: lightgreen;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: normal;
+  padding: 16px;
+  text-align: left;
+  opacity: 0;
+  transition: opacity .2s ease-out;
+  z-index: auto;
+}
+.maioPriceOverlayClose {
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  font-weight: 900;
+}
+
   .miloBlockInfo {
   
   }

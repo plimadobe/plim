@@ -146,7 +146,7 @@
           let w = document.querySelector('#maioFooter').style.width;
           if (w === '100%') {
               document.querySelector('#maioContainer').style.display = 'none';
-              document.querySelector('#maioFooter').style.width = '100px';
+              document.querySelector('#maioFooter').style.width = '80px';
           } else {
               document.querySelector('#maioContainer').style.display = 'table';
               document.querySelector('#maioFooter').style.width = '100%';
@@ -173,14 +173,18 @@
 
       document.querySelector('#maioFooterToggle').addEventListener('click', function() {
           let w = document.querySelector('#maioFooter').style.width;
-          if (w === '100%') {
+          if (w === '100%'|| !w) {
               document.querySelector('#maioContainer').style.display = 'none';
-              document.querySelector('#maioFooter').style.width = '100px';
-              document.querySelector('#maioFooterToggle').innerText = 'Milo AIO >';
+              document.querySelector('#maioFooter').style.width = '40px';
+              document.querySelector('#maioFooter').style.bottom = '35px';
+              document.querySelector('#maioFooterToggle').innerText = 'M';
+              document.querySelector('#maioFooterToggle').classList.add('maioCircle');
           } else {
               document.querySelector('#maioContainer').style.display = 'table';
               document.querySelector('#maioFooter').style.width = '100%';
+              document.querySelector('#maioFooter').style.bottom = '0';
               document.querySelector('#maioFooterToggle').innerText = 'Milo AIO <';
+              document.querySelector('#maioFooterToggle').classList.remove('maioCircle');
           }
 
       });
@@ -275,10 +279,10 @@
       let buttonText = '', newUrl = '';
       if (currentUrl.includes('//main--')) {
           newUrl = currentUrl.replace('//main--', '//stage--');
-          buttonText = 'Open stage';
+          buttonText = 'Stage';
       } else if (currentUrl.includes('//stage--')) {
           newUrl = currentUrl.replace('//stage--', '//main--');
-          buttonText = 'Open main';
+          buttonText = 'Main';
       }
       if (addButton(buttonText, 'maioStageToggle')) {
           document.querySelector('#maioStageToggle').addEventListener('click', function() {
@@ -291,7 +295,7 @@
   }
 
   let addLivePage = function() {
-    if (addButton('Open Live', 'maioLivePage')) {
+    if (addButton('Live', 'maioLivePage')) {
       document.querySelector('#maioLivePage').addEventListener('click', function() {
         //do something for this button
         let cHostname = window.location.hostname;
@@ -502,7 +506,7 @@
   let addOpenLangstore = function() {
     if (!window.location.href.includes('/langstore/')) {
       console.log('addOpenLangstore()');
-      addButton('Open langstore', 'maioOpenLangstore');
+      addButton('Langstore', 'maioOpenLangstore');
       document.querySelector('#maioOpenLangstore').addEventListener('click', function() {
         let countryFolerLangstoreMap = {'uk':'en-gb', 'au':'en-gb', 'africa':'en-gb', 'be_en':'en-gb', 'cy_en':'en-gb', 'gr_en':'en-gb', 'hk_en':'en-gb', 'i.e.':'en-gb', 'in':'en-gb', 'lu_en':'en-gb', 'mt':'en-gb', 'nz':'en-gb', 'sg':'en-gb', 'my_en':'en-gb', 'kw_en':'en-gb', 'qa_en':'en-gb', 'eg_en':'en-gb', 'ng':'en-gb', 'za':'en-gb', 'ca_fr':'fr-ca', 'ar':'es-419', 'la':'es-419', 'mx':'es-419', 'pe':'es-419', 'cl':'es-419', 'co':'es-419', 'cr':'es-419', 'ec':'es-419', 'gt':'es-419', 'pr':'es-419', 'cn':'zh-hans', 'hk_zh':'zh-hant', 'tw':'zh-hant'}
         let pageInfo = window.aldadp.pageInfo;
@@ -527,7 +531,7 @@
             if (!fs[i].classList.contains('maioXF')) {
               console.log(fs[i].getAttribute('data-path'));
               fs[i].classList.add('maioXF');
-              let f = `<div style='background-color:yellow;color:red;'><a href='${fs[i].getAttribute('data-path')}' target='_blank'>${fs[i].getAttribute('data-path')}</a></div>`;
+              let f = `<div style='background-color:yellow;color:red;position:relative;'><a href='${fs[i].getAttribute('data-path')}' target='_blank'>${fs[i].getAttribute('data-path')}</a></div>`;
               fs[i].insertAdjacentHTML('afterbegin', f)
             }
           }
@@ -563,7 +567,7 @@
   }
 
   let addSharepointOpener = function() {
-    if (addButton('Open Sharepoint', 'maioSharepointOpener')) {
+    if (addButton('Sharepoint', 'maioSharepointOpener')) {
       document.querySelector('#maioSharepointOpener').addEventListener('click', function() {
         //do something for this button
         let instance = window.location.hostname.split('--')[1];
@@ -589,11 +593,127 @@
   }
 
   let addKitchenSink = function() {
-    //removed until have the confirmation
+      console.log('addKitchenSink()');
+      addButton('Kitchen Sink', 'maioKitchenSink');
+
+
+      document.querySelector('#maioKitchenSink').addEventListener('click', function() {
+          //do something for this button
+          var xmlhttp = new XMLHttpRequest();
+          var kitchenSinkUrl = 'https://adobe.sharepoint.com/sites/adobecom/_api/web/GetListUsingPath(DecodedUrl=@a1)/RenderListDataAsStream?@a1=%27%2Fsites%2Fadobecom%2FShared%20Documents%27&RootFolder=%2Fsites%2Fadobecom%2FShared%20Documents%2Fmilo%2Fdocs%2Flibrary%2Fkitchen%2Dsink&View=d776cf70-9b7e-4ab7-b9da-9e0f8e03a7d2&TryNewExperienceSingle=TRUE';
+          var obj;
+          xmlhttp.onreadystatechange = function() {
+              if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                  if (xmlhttp.status == 200) {
+                      console.log(xmlhttp.responseText);
+                      let obj = JSON.parse(xmlhttp.responseText);
+                      let htmlString = '';
+                      for (var i = 0; i < obj.Row.length; i++) {
+                          if (obj.Row[i].FSObjType == 0) {
+                              var ts = obj.Row[i].FileRef;
+                              ts = ts.replace('/sites/adobecom/Shared Documents/milo', '')
+                              ts = ts.replace('.docx', '');
+                              console.log(ts);
+                              var ta = ts.split('/');
+                              ta[ta.length-1] = getMiloName(ta[ta.length-1]);
+                              ts = ta.join('/');
+                              ts = 'https://main--milo--adobecom.hlx.page' + ts;
+                              htmlString += `<div><a href='${ts}' target='_blank'>${obj.Row[i].FileLeafRef}</a></div>`;
+
+                              // /sites/adobecom/Shared Documents/milo
+                          }
+
+                      }
+                      htmlString = '<html><head><title>Kitchen Sink</title><body>' + htmlString + '</body></html>';
+                      var tab = window.open('about: blank', '_blank');
+                      tab.document.write(htmlString);
+                      tab.document.close();
+
+                      //const obj = JSON.parse(xmlhttp.responseText);
+                      //console.log(obj.edit.url);
+                      //window.open(obj.edit.url, '_blank');
+                  } else if (xmlhttp.status == 400) {
+                      alert('There was an error 400');
+                  } else {
+                      alert('Check your log-in status for Milo repository. \nSomething else other than 200 was returned');
+                  }
+              }
+          };
+          xmlhttp.open("POST", kitchenSinkUrl, true);
+          xmlhttp.send();
+
+
+      });
+
   }
 
   let addDocOpener = function() {
-    //removed until have the confirmation
+      console.log('addDocOpener()');
+      addButton('Word doc by URL', 'maioOpenWord');
+      document.querySelector('#maioOpenWord').addEventListener('click', function() {
+          //do something for this button
+          let getEditUrl = function(reqUrl) {
+              console.log(reqUrl);
+              var xmlhttp = new XMLHttpRequest();
+              xmlhttp.onreadystatechange = function() {
+                  if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                      if (xmlhttp.status == 200) {
+                          const obj = JSON.parse(xmlhttp.responseText);
+                          console.log(obj.edit.url);
+                          window.open(obj.edit.url, '_blank');
+                      }
+                      else if (xmlhttp.status == 400) {
+                          alert('There was an error 400');
+                      }
+                      else {
+                          alert('Check your Sidekick log-in status. \nSomething else other than 200 was returned');
+                      }
+                  }
+              };
+              xmlhttp.open("GET", reqUrl, true);
+              xmlhttp.send();
+          };
+          let mUrls = prompt('Enter Milo preview URLs');
+          if ((mUrls = mUrls.trim()).length < 1) throw new Error;
+          var mua;
+          if (mUrls.search(',') > 0) {
+              mua = mUrls.split(',')
+              } else {
+                  mua = mUrls.split('\n');
+              }
+          if (mua.length > 10) throw alert('Terminate to avoid opening too many pages at once.\nDo not enter more than 10 URLs'), new Error;
+          let repo = 'cc', branch = 'main';
+          for (var i = 0; i < mua.length; i++) {
+              if (mua[i].search('https') < 0) {
+                  throw alert('Check URLs, it should start with https'), new Error;
+              }
+
+              console.log(mua[i]);
+              let tA = mua[i].split('/');
+              tA.shift();
+              tA.shift();
+              let hostName = tA.shift();
+              let reqPath = '';
+              for (let j = 0; j < tA.length; j++) {
+                  reqPath += '/' + tA[j];
+              }
+
+              let hostNames = hostName.split('--');
+              if (mua[i].search('adobecom.hlx') < 0) {
+                  repo = getRepoPrompt(mua[i]);
+                  //branch = prompt('Enter branch. e.g) main, stage');
+              } else {
+                  repo = hostNames[1];
+                  //branch = hostNames[0];
+              }
+              branch = 'main';
+              let reqUrl = 'https://admin.hlx.page/status/adobecom/' + repo + '/' + branch;
+              console.log(reqPath);
+              getEditUrl(reqUrl + reqPath + '?editUrl=auto');
+          }
+
+      });
+
   }
 
   let checkMaio = function() {
@@ -604,6 +724,155 @@
       }
   }
 
+  let addSeparator = function() {
+    let htmlString = `<span class="maioSeparator">|</span>`;
+    if (document.querySelector('#maioContainer')) {
+        document.querySelector('#maioContainer').insertAdjacentHTML('beforeend', htmlString);
+        return true;
+    } else {
+        console.log('Check #maioContainer');
+        return false;
+    }
+
+  }
+
+  let addText = function(s) {
+    let htmlString = `<span class="maioSeparator">${s}</span>`;
+    if (document.querySelector('#maioContainer')) {
+        document.querySelector('#maioContainer').insertAdjacentHTML('beforeend', htmlString);
+        return true;
+    } else {
+        console.log('Check #maioContainer');
+        return false;
+    }
+
+  }
+
+  let addOpenGEO = function() {
+    if (addButton('GEO', 'maioOpenGEO')) {
+      document.querySelector('#maioOpenGEO').addEventListener('click', function() {
+        let tcc = prompt(`Options \n1. Click OK to open US page.\n2. Enter country. Use comma separator to open multiple GEOs. e.g) au,kr`);
+        tcc = tcc.replace(/\s/g, '');
+        let cc = country();
+        ta = tcc.split(',');
+        for (let i = 0; i < ta.length; i++) {
+            if (cc === 'us') {
+                if (ta[i] !== 'us' && ta[i] !== '') {
+                    let tUrl = currentUrl.split('/');
+                    tUrl.splice(3, 0, ta[i]);
+                    window.open(tUrl.join('/'), "_blank");
+        
+                }
+            } else {
+                if (ta[i] === '' || ta[i] === 'us') {
+                    window.open(currentUrl.replace('/' + cc + '/', '/'), "_blank");
+                } else {
+                    window.open(currentUrl.replace('/' + cc + '/', '/' + ta[i] + '/'), "_blank");
+                }
+            }
+        }
+            
+      });
+
+    }
+
+  }
+
+  let addDynamicPrice = function() {
+    if (addButton('Dynamic Price', 'maioDynamicPrice')) {
+      document.querySelector('#maioDynamicPrice').addEventListener('click', function() {
+
+        if (!document.querySelector('.maioPriceOverlay')) {
+          let overlay = document.createElement("div");
+          overlay.setAttribute("class", "maioPriceOverlay");
+          document.body.appendChild(overlay);
+        }
+
+        setInterval(function() {
+          let dps = document.querySelectorAll('.placeholder-resolved:not(.maioDynamicPrice)');
+          for (let i = 0; i < dps.length; i++) {
+            dps[i].classList.add('maioDynamicPrice');
+              dps[i].addEventListener("click", (e) => {
+                  let t = e.target.closest("[data-wcs-osi].placeholder-resolved");
+                  document.querySelector('.maioPriceOverlay').style.left = (e.clientX) + 'px';
+                  document.querySelector('.maioPriceOverlay').style.top = (e.clientY + 30) + 'px';
+                  if (!t) return;
+                  let {
+                      offerSelectorIds: [r],
+                      offerId: o,
+                      productArrangement: {
+                          productFamily: l
+                      },
+                      productArrangementCode: i,
+                      planType: n,
+                      offerType: a,
+                      customerSegment: d,
+                      marketSegments: [s],
+                      pricePoint: y,
+                      language: p
+                  } = t.value[0];
+                  let overlayDiv = document.querySelector(".maioPriceOverlay");
+                  let newHtml = '<strong>Offer Selector ID:</strong> ' + [r];
+                  newHtml += '<br /><strong>Offer ID:</strong> ' + o;
+                  newHtml += '<br /><strong>Offer Type:</strong> ' + a;
+                  newHtml += '<br /><strong>Plan Type:</strong> ' + n;
+                  newHtml += '<br /><strong>Customer Segment:</strong> ' + d;
+                  newHtml += '<br /><strong>Market Segment:</strong> ' + [s];
+                  newHtml += '<br /><strong>PA Code:</strong> ' + i;
+                  newHtml += '<br /><strong>Product Family:</strong> ' + l;
+                  newHtml += '<br /><strong>Price Point:</strong> ' + y;
+                  newHtml += '<br /><strong>Language:</strong> ' + p;
+                  newHtml += '<div class="maioPriceOverlayClose" onclick=\'document.querySelector(".maioPriceOverlay").style.opacity=0;document.querySelector(".maioPriceOverlay").style.zIndex=-1;\'>X</div>';
+                  overlayDiv.innerHTML = newHtml;
+                  if (overlayDiv.style.opacity === '0' || overlayDiv.style.opacity === '') {
+                      overlayDiv.style.opacity = 1;
+                      overlayDiv.style.zIndex = 100;
+                  };
+              });
+          };
+              
+        }, 2000);
+  
+
+
+
+      });
+
+    }
+
+  }
+
+  
+  let addMarketoForm = function() {
+    if (addButton('Marketo Form', 'maioMarketoForm')) {
+      document.querySelector('#maioMarketoForm').addEventListener('click', function() {
+
+        if (!document.querySelector('.maioMfd') && document.querySelector('.marketo')) {
+          let xhr = new XMLHttpRequest();
+          xhr.open('GET', window.location.href, true);
+          let linkText = '',
+              linkUrl = '';
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState === 4) {
+                  let dom = new DOMParser().parseFromString(xhr.responseText, 'text/html');
+                  let targetElem = dom.querySelector('a[href^="https://milo.adobe.com/tools/marketo"]');
+                  linkText = targetElem.innerText;
+                  linkUrl = targetElem.href;
+                  console.log(dom.querySelector('a[href^="https://milo.adobe.com/tools/marketo"]').innerText);
+                  let mf = document.querySelector('.marketo');
+                  let mfp = mcz_marketoForm_pref;
+                  let mfd = '<div class="maioMfd" style="background-color:#E1FF3E; padding: 8px;"><a href="' + linkUrl + '" target="_blank">' + linkText + '</a><br />SFDC Campaign ID: ' + mfp.program.campaignids.sfdc + '<br />Destination Type:' + mfp.form.success.type + '<br />Destination URL: ' + mfp.form.success.content + '</div>';
+                  mf.insertAdjacentHTML('afterbegin', mfd);
+              }
+          };
+          xhr.send();
+        }
+
+      });
+
+    }
+
+  }
   let main = function() {
 
       console.log('main() Page Type:' + pageType);
@@ -616,16 +885,25 @@
           case 'miloPage':
               addBottom();
               setTimeout(() => {
+                  addText('Open:');
                   addSharepointOpener();
-                  addLocalLink();
-                  addLinkFinder();
+                  addOpenLangstore();
+                  addOpenGEO();
                   addStageToggle();
                   addLivePage();
+                  addDocOpener();
+
+                  addSeparator();
+
+                  addText('Tools:');
+                  addLocalLink();
+                  addLinkFinder();
                   //addGeoOpener();
                   addMiloBlockInfo();
-                  addOpenLangstore();                  
                   addDisplayFragments();                  
-                  addHeadingHeighlighter();                  
+                  addHeadingHeighlighter();
+                  addDynamicPrice();
+                  addMarketoForm();
               }, 1000);
 
 
@@ -638,6 +916,8 @@
                   //addLinkLib();
                   addResizeMiloLib();
                   watchMiloLib();
+                  addDocOpener();
+                  addKitchenSink();
               }, 1000);
 
               break;
@@ -645,6 +925,7 @@
           case 'sharepointDrive':
               addBottom();
               addMultiViewOpener();
+              addDocOpener();
               addPathChanger();
 
               break;
