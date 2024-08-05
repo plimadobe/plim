@@ -817,10 +817,11 @@
                 newHtml += '<br /><strong>Product Family:</strong> ' + l;
                 newHtml += '<br /><strong>Price Point:</strong> ' + y;
                 newHtml += '<br /><strong>Language:</strong> ' + p;
-                newHtml += '<div class="maioPriceOverlayClose" onclick=\'document.querySelector(".maioPriceOverlay").style.opacity=0;\'>X</div>';
+                newHtml += '<div class="maioPriceOverlayClose" onclick=\'document.querySelector(".maioPriceOverlay").style.opacity=0;document.querySelector(".maioPriceOverlay").style.zIndex=-1;\'>X</div>';
                 overlayDiv.innerHTML = newHtml;
                 if (overlayDiv.style.opacity === '0' || overlayDiv.style.opacity === '') {
                     overlayDiv.style.opacity = 1;
+                    overlayDiv.style.zIndex = 100;
                 };
             });
         };

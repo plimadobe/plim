@@ -126,7 +126,7 @@
   text-align: left;
   opacity: 0;
   transition: opacity .2s ease-out;
-  z-index: 100;
+  z-index: auto;
 }
 .maioPriceOverlayClose {
   cursor: pointer;
