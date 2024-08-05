@@ -778,6 +778,59 @@
 
   }
 
+  let addDynamicPrice = function() {
+    if (addButton('Dynamic Price', 'maioDynamicPrice')) {
+      document.querySelector('#maioDynamicPrice').addEventListener('click', function() {
+        let overlay = document.createElement("div");
+        overlay.setAttribute("class", "maioPriceOverlay");
+        document.body.appendChild(overlay);
+        let dps = document.querySelectorAll('.placeholder-resolved');
+        for (let i = 0; i < dps.length; i++) {
+            dps[i].style.backgroundColor = 'lightgreen';
+            dps[i].addEventListener("click", (e) => {
+                let t = e.target.closest("[data-wcs-osi].placeholder-resolved");
+                document.querySelector('.maioPriceOverlay').style.left = (e.clientX) + 'px';
+                document.querySelector('.maioPriceOverlay').style.top = (e.clientY + 30) + 'px';
+                if (!t) return;
+                let {
+                    offerSelectorIds: [r],
+                    offerId: o,
+                    productArrangement: {
+                        productFamily: l
+                    },
+                    productArrangementCode: i,
+                    planType: n,
+                    offerType: a,
+                    customerSegment: d,
+                    marketSegments: [s],
+                    pricePoint: y,
+                    language: p
+                } = t.value[0];
+                let overlayDiv = document.querySelector(".maioPriceOverlay");
+                let newHtml = '<strong>Offer Selector ID:</strong> ' + [r];
+                newHtml += '<br /><strong>Offer ID:</strong> ' + o;
+                newHtml += '<br /><strong>Offer Type:</strong> ' + a;
+                newHtml += '<br /><strong>Plan Type:</strong> ' + n;
+                newHtml += '<br /><strong>Customer Segment:</strong> ' + d;
+                newHtml += '<br /><strong>Market Segment:</strong> ' + [s];
+                newHtml += '<br /><strong>PA Code:</strong> ' + i;
+                newHtml += '<br /><strong>Product Family:</strong> ' + l;
+                newHtml += '<br /><strong>Price Point:</strong> ' + y;
+                newHtml += '<br /><strong>Language:</strong> ' + p;
+                newHtml += '<div class="maioPriceOverlayClose" onclick=\'document.querySelector(".maioPriceOverlay").style.opacity=0;\'>X</div>';
+                overlayDiv.innerHTML = newHtml;
+                if (overlayDiv.style.opacity === '0' || overlayDiv.style.opacity === '') {
+                    overlayDiv.style.opacity = 1;
+                };
+            });
+        };
+            
+      });
+
+    }
+
+  }
+
   let main = function() {
 
       console.log('main() Page Type:' + pageType);
@@ -806,7 +859,8 @@
                   //addGeoOpener();
                   addMiloBlockInfo();
                   addDisplayFragments();                  
-                  addHeadingHeighlighter();                  
+                  addHeadingHeighlighter();
+                  addDynamicPrice();
               }, 1000);
 
 

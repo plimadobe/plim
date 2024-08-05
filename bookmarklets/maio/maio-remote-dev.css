@@ -115,6 +115,27 @@
   font-weight: 900 !important;
 }
   
+.maioPriceOverlay {
+  position: fixed;
+  text-align: center;
+  background-color: lightgreen;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: normal;
+  padding: 16px;
+  text-align: left;
+  opacity: 0;
+  transition: opacity .2s ease-out;
+  z-index: 100;
+}
+.maioPriceOverlayClose {
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  font-weight: 900;
+}
+
   .miloBlockInfo {
   
   }
