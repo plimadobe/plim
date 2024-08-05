@@ -115,6 +115,9 @@
   font-weight: 900 !important;
 }
   
+.maioDynamicPrice {
+  background-color: lightgreen;
+}
 .maioPriceOverlay {
   position: fixed;
   text-align: center;
