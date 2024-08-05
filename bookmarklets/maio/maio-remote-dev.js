@@ -842,6 +842,37 @@
 
   }
 
+  
+  let addMarketoForm = function() {
+    if (addButton('Marketo Form', 'maioMarketoForm')) {
+      document.querySelector('#maioMarketoForm').addEventListener('click', function() {
+
+        if (!document.querySelector('.maioMfd') && document.querySelector('.marketo')) {
+          let xhr = new XMLHttpRequest();
+          xhr.open('GET', window.location.href, true);
+          let linkText = '',
+              linkUrl = '';
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState === 4) {
+                  let dom = new DOMParser().parseFromString(xhr.responseText, 'text/html');
+                  let targetElem = dom.querySelector('a[href^="https://milo.adobe.com/tools/marketo"]');
+                  linkText = targetElem.innerText;
+                  linkUrl = targetElem.href;
+                  console.log(dom.querySelector('a[href^="https://milo.adobe.com/tools/marketo"]').innerText);
+                  let mf = document.querySelector('.marketo');
+                  let mfp = mcz_marketoForm_pref;
+                  let mfd = '<div class="maioMfd" style="background-color:#E1FF3E; padding: 8px;"><a href="' + linkUrl + '" target="_blank">' + linkText + '</a><br />SFDC Campaign ID: ' + mfp.program.campaignids.sfdc + '<br />Destination Type:' + mfp.form.success.type + '<br />Destination URL: ' + mfp.form.success.content + '</div>';
+                  mf.insertAdjacentHTML('afterbegin', mfd);
+              }
+          };
+          xhr.send();
+        }
+
+      });
+
+    }
+
+  }
   let main = function() {
 
       console.log('main() Page Type:' + pageType);
@@ -872,6 +903,7 @@
                   addDisplayFragments();                  
                   addHeadingHeighlighter();
                   addDynamicPrice();
+                  addMarketoForm();
               }, 1000);
 
 
