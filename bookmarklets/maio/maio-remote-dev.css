@@ -116,7 +116,7 @@
 }
   
 .maioDynamicPrice {
-  background-color: lightgreen;
+  background-color: lightgreen !important;
 }
 .maioPriceOverlay {
   position: fixed;
