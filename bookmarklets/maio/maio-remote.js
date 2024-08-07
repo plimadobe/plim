@@ -873,6 +873,22 @@
     }
 
   }
+
+  let addPromobar = function() {
+    if (addButton('Promobar', 'maioPromobar')) {
+      document.querySelector('#maioPromobar').addEventListener('click', function() {
+
+        let hs = document.querySelectorAll('.promo-sticky-section.hide-sticky-section');
+        for (let i = 0; i < hs.length; i++) {
+            hs[i].style.display = 'block';
+        }
+        
+      });
+
+    }
+
+  }
+  
   let main = function() {
 
       console.log('main() Page Type:' + pageType);
@@ -898,12 +914,12 @@
                   addText('Tools:');
                   addLocalLink();
                   addLinkFinder();
-                  //addGeoOpener();
                   addMiloBlockInfo();
                   addDisplayFragments();                  
                   addHeadingHeighlighter();
                   addDynamicPrice();
                   addMarketoForm();
+                  addPromobar();
               }, 1000);
 
 

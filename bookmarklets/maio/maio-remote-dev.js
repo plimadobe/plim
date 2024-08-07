@@ -875,7 +875,7 @@
   }
 
   let addPromobar = function() {
-    if (addButton('Show Promobar', 'maioPromobar')) {
+    if (addButton('Promobar', 'maioPromobar')) {
       document.querySelector('#maioPromobar').addEventListener('click', function() {
 
         let hs = document.querySelectorAll('.promo-sticky-section.hide-sticky-section');
