@@ -1,6 +1,6 @@
 //(function() {
 
-const appInfo = 'Jira Note Remote ver 0.292';
+const appInfo = 'Jira Note Remote ver 0.293';
 'use strict';
 //throw 'throw';
 console.log(appInfo);
@@ -288,7 +288,7 @@ $(document).ready(function() {
     setTimeout(function() {
         console.log('Load Jira Note...');
 
-        let textArea = '<div id="jiraNoteContainer" style="margin-top:20px;">';
+        let textArea = '<div id="jiraNoteContainer" style="margin-top:20px;position:sticky;top:0;z-index=1;">';
         textArea += '<h4>Jira Note</h4><textarea id="'+jiraNoteKey+'" name="'+jiraNoteKey+'" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#000;color:#FFF" onchange="saveJiraNote();" onkeyup="saveJiraNote();" placeholder="Make your note at here."></textarea>';
         //textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveJiraNote2();">';
         textArea += '<input class="button aui-button aui-button-primary" type="button" value="Search" onclick="searchJiraNote();">';
