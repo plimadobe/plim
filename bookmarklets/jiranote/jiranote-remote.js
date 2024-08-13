@@ -1,6 +1,6 @@
 //(function() {
 
-const appInfo = 'Jira Note Remote ver 0.291';
+const appInfo = 'Jira Note Remote ver 0.293';
 'use strict';
 //throw 'throw';
 console.log(appInfo);
@@ -82,8 +82,27 @@ function loadJiraNote() {
             };
         };
     };
+    addFocusEvent();
+    getUsed();
+    
     console.log('newJiraNote2:' + newJiraNote);
 };
+
+function addFocusEvent() {
+  //when focus, if the textare is empty, check if there is a data in the localstorage
+  const textArea = document.querySelector('#jiraNote');
+  if (textArea.getAttribute('listener') !== 'true') {
+    textArea.addEventListener("focus", (event) => {
+      if (textArea.value.trim() === '') {
+        loadJiraNote();
+      }
+      console.log('textArea: ' + textArea.value.trim());
+      
+    });
+    textArea.setAttribute('listener', 'true');
+  }
+
+}
 
 function saveJiraNote() {
   let ticketId = getTicketId(sprint);
@@ -161,6 +180,7 @@ function exportJiraNote() {
 
 function importJiraNote() {
   if (!document.querySelector('#jiraNoteImportContainer')) {
+    console.log('importJiraNote()');
     let textArea = '<div id="jiraNoteImportContainer" style="margin-top:20px;">';
     //textArea += '<h4>Import Jira Note data</h4><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#000" placeholder="Paste the Jira Note Data here.\n!!! Your all Jira Note data will be overwritten. !!!"></textarea>';
     let localStorageJiraNote = localStorage.getItem(jiraNoteKey);
@@ -169,8 +189,10 @@ function importJiraNote() {
     textArea += '<input class="button aui-button aui-button-primary" type="button" value="Cancel" onclick="cancelImportJiraNote();">';
     textArea += '</div>';
 
-    let elem = document.querySelector('#jiraNoteContainer');
-    elem.insertAdjacentHTML('afterend', textArea);
+    //let elem = document.querySelector('#jiraNoteContainer');
+    let elem = document.querySelector('#jiraNoteSubContainer');
+
+    elem.insertAdjacentHTML('beforeend', textArea);
   }
 
 }
@@ -184,6 +206,26 @@ function saveImportJiraNote() {
 
 function cancelImportJiraNote() {
   document.querySelector('#' + jiraNoteKey + 'ImportContainer').remove();
+}
+
+function getUsed() {
+  var _lsTotal = 0,
+    _lsMax = 10400008,
+    _xLen, _x;
+  for (_x in localStorage) {
+      if (!localStorage.hasOwnProperty(_x)) {
+          continue;
+      }
+      _xLen = ((localStorage[_x].length + _x.length) * 2);
+      _lsTotal += _xLen;
+      //console.log(_x.substr(0, 50) + " = " + (_xLen / 1024).toFixed(2) + " KB")
+  };
+  console.log("Total = " + (_lsTotal / 1024).toFixed(2) + " KB");
+  //max of _lsTotal = 10400008
+  console.log('localStorage: ' + (_lsTotal / _lsMax * 100).toFixed(2) + '% used');
+  //return (_lsTotal / _lsMax * 100).toFixed(2) + '% used';
+  document.querySelector('#' + jiraNoteKey + 'Used').innerText = (_lsTotal / _lsMax * 100).toFixed(2) + '% used';
+
 }
 
 function searchJiraNote() {
@@ -223,8 +265,8 @@ function searchJiraNote() {
       textArea += `</p>`;
       textArea += '</div>';
   
-      let elem = document.querySelector('#jiraNoteContainer');
-      elem.insertAdjacentHTML('afterend', textArea);
+      let elem = document.querySelector('#jiraNoteSubContainer');
+      elem.insertAdjacentHTML('afterbegin', textArea);
 
 
 
@@ -246,12 +288,14 @@ $(document).ready(function() {
     setTimeout(function() {
         console.log('Load Jira Note...');
 
-        let textArea = '<div id="jiraNoteContainer" style="margin-top:20px;">';
+        let textArea = '<div id="jiraNoteContainer" style="margin-top:20px;position:sticky;top:0;z-index=1;">';
         textArea += '<h4>Jira Note</h4><textarea id="'+jiraNoteKey+'" name="'+jiraNoteKey+'" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#000;color:#FFF" onchange="saveJiraNote();" onkeyup="saveJiraNote();" placeholder="Make your note at here."></textarea>';
         //textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveJiraNote2();">';
         textArea += '<input class="button aui-button aui-button-primary" type="button" value="Search" onclick="searchJiraNote();">';
         textArea += '<input class="button aui-button aui-button-secondary" type="button" value="Export" onclick="exportJiraNote();">';
         textArea += '<input class="button aui-button aui-button-secondary" type="button" value="Import" onclick="importJiraNote();">';
+        textArea += '<span id="'+jiraNoteKey+'Used" style="color: grey;margin-left: 12px;">xx% used</span>';
+        textArea += '<div id="'+jiraNoteKey+'SubContainer"></div>';
         textArea += '</div>';
 
         let targetPosition = document.getElementById("viewissuesidebar");
