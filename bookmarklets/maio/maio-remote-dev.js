@@ -25,7 +25,7 @@
   let pageType = checkPageType();
 
   let country = function() {
-      let countries = ['ar','br','ca','ca_fr','cl','co','cr','ec','gt','la','mx','pe','pr','au','africa','be_fr','be_en','be_nl','dk','de','ee','eg_en','eg_ar','es','fr','gr_en','gr_el','ie','il_en','it','kw_en','kw_ar','lv','lt','lu_de','lu_en','lu_fr','hu','mena_en','nl','ng','no','pl','pt','qa_en','qa_ar','ro','sa_en','ch_de','si','sk','za','ch_fr','fi','se','ch_it','tr','ae_en','uk','at','cz','bg','ru','ua','il_he','ae_ar','mena_ar','sa_ar','au','hk_en','in','id_id','id_en','my_ms','my_en','nz','ph_en','ph_fil','sg','th_en','vn_en','vn_vi','in_hi','th_th','cn','hk_zh','tw','jp','kr'];
+      let countries = ['langstore', 'ar','br','ca','ca_fr','cl','co','cr','ec','gt','la','mx','pe','pr','au','africa','be_fr','be_en','be_nl','dk','de','ee','eg_en','eg_ar','es','fr','gr_en','gr_el','ie','il_en','it','kw_en','kw_ar','lv','lt','lu_de','lu_en','lu_fr','hu','mena_en','nl','ng','no','pl','pt','qa_en','qa_ar','ro','sa_en','ch_de','si','sk','za','ch_fr','fi','se','ch_it','tr','ae_en','uk','at','cz','bg','ru','ua','il_he','ae_ar','mena_ar','sa_ar','au','hk_en','in','id_id','id_en','my_ms','my_en','nz','ph_en','ph_fil','sg','th_en','vn_en','vn_vi','in_hi','th_th','cn','hk_zh','tw','jp','kr'];
       let ta = currentUrl.split('/');
       if (countries.includes(ta[3])) {
           return ta[3];
@@ -188,6 +188,13 @@
           }
 
       });
+
+      if (country() === 'us') {
+        document.querySelector('#maioFooter').classList.add('maioBackgroundColorUS');
+      }
+      if (country() === 'langstore') {
+        document.querySelector('#maioFooter').classList.add('maioBackgroundColorLangstore');
+      }
 
   }
 

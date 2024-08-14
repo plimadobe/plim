@@ -23,6 +23,13 @@
   text-decoration-line: none;
   }
   
+  .maioBackgroundColorUS {
+    background-color: #002868 !important;
+  }
+  
+  .maioBackgroundColorLangstore {
+    background-color: #DA621E !important;
+  }
   
   #maioFooterToggle {
   font-family: system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
