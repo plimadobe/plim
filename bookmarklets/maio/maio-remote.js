@@ -189,12 +189,14 @@
 
       });
 
+      /*
       if (country() === 'us') {
         document.querySelector('#maioFooter').classList.add('maioBackgroundColorUS');
       }
       if (country() === 'langstore') {
         document.querySelector('#maioFooter').classList.add('maioBackgroundColorLangstore');
       }
+      */
 
   }
 
