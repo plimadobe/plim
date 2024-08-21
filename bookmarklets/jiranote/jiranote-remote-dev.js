@@ -14,7 +14,7 @@ if (window.location.href.includes("RapidBoard.jspa")) {
 sprint = false;//For Blocking Sprint mode
 
 var localStorageJiraNote = '';
-var heightTextArea = 300;
+var heightTextArea = 400;
 let jiraNoteKey = 'jiraNote';
 let jiraNoteExpiry = 365;//Days
 
@@ -207,16 +207,15 @@ function getCurrentWidthPercentage() {
   return roundToNearestFive(Math.round(sideWidth/viewportWidth*100));
 }
 
+function saveWidth() {
+
+}
+
 function increaseSizeJiraNote() {
-  /*
-  window.innerWidth // 1903
-  let viewportWidth = window.innerWidth;
-  let sideWidth = document.querySelector('#viewissuesidebar').offsetWidth + 39; // 627
-  console.log(Math.round(sideWidth/viewportWidth*100));
-  */
   if (getCurrentWidthPercentage() < 80) {
     const newWidth = getCurrentWidthPercentage() + 5;
     document.querySelector('#viewissuesidebar').style.width = newWidth + '%';
+    saveWidth();
   }
 }
 
@@ -224,6 +223,7 @@ function decreaseSizeJiraNote() {
   if (getCurrentWidthPercentage() > 30) {
     const newWidth = getCurrentWidthPercentage() - 5;
     document.querySelector('#viewissuesidebar').style.width = newWidth + '%';
+    saveWidth();
   }
 }
 
@@ -319,15 +319,15 @@ $(document).ready(function() {
         console.log('Load Jira Note...');
 
         let textArea = '<div id="jiraNoteContainer" style="margin-top:20px;position:sticky;top:0;z-index=1;">';
-        textArea += '<h4>Jira Note</h4><textarea id="'+jiraNoteKey+'" name="'+jiraNoteKey+'" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#000;color:#FFF" onchange="saveJiraNote();" onkeyup="saveJiraNote();" placeholder="Make your note at here."></textarea>';
+        textArea += '<h4>Jira Note</h4><textarea id="'+jiraNoteKey+'" name="'+jiraNoteKey+'" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: calc(100% - 4px); background-color:#000;color:#FFF" onchange="saveJiraNote();" onkeyup="saveJiraNote();" placeholder="Make your note at here."></textarea>';
         //textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveJiraNote2();">';
         textArea += '<input class="button aui-button aui-button-primary" type="button" value="Search" onclick="searchJiraNote();">';
         textArea += '<input class="button aui-button aui-button-secondary" type="button" value="Export" onclick="exportJiraNote();">';
         textArea += '<input class="button aui-button aui-button-secondary" type="button" value="Import" onclick="importJiraNote();">';
         textArea += '<span id="'+jiraNoteKey+'Used" style="color: grey;margin-left: 12px;">xx% used</span>';
         textArea += '<span style="position:absolute;right:0;">';
-        textArea += '<input class="button aui-button aui-button-primary" type="button" value="+" onclick="increaseSizeJiraNote();">';
-        textArea += '<input class="button aui-button aui-button-primary" type="button" value="-" onclick="decreaseSizeJiraNote();">';
+        textArea += '<input class="button aui-button aui-button-secondary" type="button" value="+" onclick="increaseSizeJiraNote();">';
+        textArea += '<input class="button aui-button aui-button-secondary" type="button" value="-" onclick="decreaseSizeJiraNote();">';
         textArea += '</span>';    
         textArea += '<div id="'+jiraNoteKey+'SubContainer"></div>';
         textArea += '</div>';
