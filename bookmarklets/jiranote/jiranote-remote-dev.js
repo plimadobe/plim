@@ -187,6 +187,12 @@ function importJiraNote() {
     textArea += '<h4>Import Jira Note data</h4><p style="padding:4px;background-color:#f44336;color:#fff;"><strong>Danger!</strong> Your all Jira Note data will be overwritten.</p><textarea id="'+jiraNoteKey+'Import" name="'+jiraNoteKey+'Import" rows="4" cols="50" class="" style="height: '+heightTextArea+'px; width: 100%; background-color:#DFE2E6;color:#000">'+localStorageJiraNote.trim()+'</textarea>';
     textArea += '<input class="button aui-button aui-button-primary" type="button" value="Save" onclick="saveImportJiraNote();">';
     textArea += '<input class="button aui-button aui-button-primary" type="button" value="Cancel" onclick="cancelImportJiraNote();">';
+
+    textArea += '<span style="position:absolute;right:0;">';
+    textArea += '<input class="button aui-button aui-button-primary" type="button" value="+" onclick="increaseSizeJiraNote();">';
+    textArea += '<input class="button aui-button aui-button-primary" type="button" value="-" onclick="decreaseSizeJiraNote();">';
+    textArea += '</span>';
+
     textArea += '</div>';
 
     //let elem = document.querySelector('#jiraNoteContainer');
@@ -195,6 +201,36 @@ function importJiraNote() {
     elem.insertAdjacentHTML('beforeend', textArea);
   }
 
+}
+
+function roundToNearestFive(num) {
+  return Math.round(num / 5) * 5;
+}
+
+function getCurrentWidthPercentage() {
+  const viewportWidth = window.innerWidth;
+  const sideWidth = document.querySelector('#viewissuesidebar').offsetWidth + 39; // 627
+  return roundToNearestFive(Math.round(sideWidth/viewportWidth*100));
+}
+
+function increaseSizeJiraNote() {
+  /*
+  window.innerWidth // 1903
+  let viewportWidth = window.innerWidth;
+  let sideWidth = document.querySelector('#viewissuesidebar').offsetWidth + 39; // 627
+  console.log(Math.round(sideWidth/viewportWidth*100));
+  */
+  if (getCurrentWidthPercentage() < 80) {
+    const newWidth = getCurrentWidthPercentage() + 5;
+    document.querySelector('#viewissuesidebar').style.width = newWidth + '%';
+  }
+}
+
+function decreaseSizeJiraNote() {
+  if (getCurrentWidthPercentage() > 30) {
+    const newWidth = getCurrentWidthPercentage() - 5;
+    document.querySelector('#viewissuesidebar').style.width = newWidth + '%';
+  }
 }
 
 function saveImportJiraNote() {
